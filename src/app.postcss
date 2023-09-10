@@ -1,0 +1,76 @@
+@import 'tailwindcss/base';
+@import 'fonts.postcss';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+	html,
+	body {
+		@apply bg-black text-white;
+
+		color-scheme: dark;
+	}
+
+	html {
+		@apply overflow-x-hidden overflow-y-scroll;
+
+		-webkit-tap-highlight-color: transparent;
+		scrollbar-color: #fff2 #000;
+		scrollbar-width: thin;
+	}
+
+	*:focus-visible {
+		outline: 2px solid white;
+		outline-offset: 4px;
+	}
+
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+	::-webkit-scrollbar-track {
+		background: black;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #ffffff22;
+	}
+	::-webkit-scrollbar-button {
+		display: none;
+	}
+	::-webkit-scrollbar-corner {
+		display: none;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #ffffff18;
+	}
+	::-webkit-scrollbar-thumb:active {
+		background: #ffffff10;
+	}
+}
+
+@layer components {
+	.wrapper {
+		@apply mx-auto max-w-screen-md px-8;
+	}
+
+	.focus-outline {
+		@apply outline-none outline-2 outline-offset-2
+			focus-visible:outline-purple-500;
+	}
+
+	.link {
+		@apply focus-outline rounded-lg
+			inline-block no-underline mx-0.5 text-purple-600 font-semibold relative transition duration-300
+			after:absolute after:block after:-inset-x-1 after:bottom-1 after:h-4 after:opacity-10 after:bg-current after:rounded-full after:transition-all after:duration-300
+			hocus:text-purple-700 hocus:after:inset-x-0 hocus:after:bottom-1 hocus:after:h-2 hocus:after:opacity-30;
+	}
+}
+
+@layer utilities {
+	.no-scrollbar {
+		scrollbar-width: none;
+	}
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+}
