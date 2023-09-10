@@ -43,6 +43,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.29
     version: 8.4.29
+  postcss-each:
+    specifier: ^1.1.0
+    version: 1.1.0(postcss@8.4.29)
   postcss-load-config:
     specifier: ^4.0.1
     version: 4.0.1(postcss@8.4.29)
@@ -1682,6 +1685,15 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /postcss-each@1.1.0(postcss@8.4.29):
+    resolution: {integrity: sha512-YfTPHHAPFVRgEJfLg9RM4R9WYEHVU9Rf1R8QgZfnObwV2dgNqzTLzTl0w5tF71ApFcYLiJAXiTpHAoqJFYcZVw==}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.29
+      postcss-simple-vars: 6.0.3(postcss@8.4.29)
+    dev: true
+
   /postcss-import@15.1.0(postcss@8.4.29):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
@@ -1772,6 +1784,15 @@ packages:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
+    dev: true
+
+  /postcss-simple-vars@6.0.3(postcss@8.4.29):
+    resolution: {integrity: sha512-fkNn4Zio8vN4vIig9IFdb8lVlxWnYR769RgvxCM6YWlFKie/nQaOcaMMMFz/s4gsfHW4/5bJW+i57zD67mQU7g==}
+    engines: {node: '>=10.0'}
+    peerDependencies:
+      postcss: ^8.2.1
+    dependencies:
+      postcss: 8.4.29
     dev: true
 
   /postcss-value-parser@4.2.0:

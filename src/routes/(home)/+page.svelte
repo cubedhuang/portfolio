@@ -1,0 +1,58 @@
+<script lang="ts">
+	import Clock from './Clock.svelte';
+	import DiscordInfo from './DiscordInfo.svelte';
+	import SocialLink from './SocialLink.svelte';
+	import SpotifyInfo from './SpotifyInfo.svelte';
+
+	import GitHub from '$lib/components/icons/GitHub.svelte';
+	import Envelope from '$lib/components/icons/Envelope.svelte';
+	import Linkedin from '$lib/components/icons/Linkedin.svelte';
+	import Spotify from '$lib/components/icons/Spotify.svelte';
+	import Twitter from '$lib/components/icons/Twitter.svelte';
+</script>
+
+<svelte:head>
+	<title>Daniel</title>
+</svelte:head>
+
+<main class="wrapper">
+	<h1 class="text-6xl font-black">Daniel!</h1>
+
+	<p class="mt-4 text-gray-400">
+		Hey! I'm <b>Daniel</b>, a 17-year-old developer from
+		<b>Atlanta, Georgia</b>.
+	</p>
+
+	<div class="mt-4 flex gap-4">
+		<SocialLink href="https://github.com/cubedhuang" name="GitHub">
+			<GitHub />
+		</SocialLink>
+
+		<SocialLink
+			href="https://www.linkedin.com/in/cubedhuang"
+			name="LinkedIn"
+		>
+			<Linkedin />
+		</SocialLink>
+
+		<SocialLink href="https://twitter.com/cubedhuang" name="Twitter">
+			<Twitter />
+		</SocialLink>
+
+		<SocialLink
+			href="https://open.spotify.com/user/22ah5au2dajm7rqn3znkf4tnq?si=95e89d77cb0046f5"
+			name="Spotify"
+		>
+			<Spotify />
+		</SocialLink>
+
+		<SocialLink href="mailto:99danielh@gmail.com" name="Email">
+			<Envelope />
+		</SocialLink>
+	</div>
+
+	<Clock />
+
+	<DiscordInfo />
+	<SpotifyInfo />
+</main>

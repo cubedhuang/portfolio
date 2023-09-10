@@ -53,16 +53,33 @@
 		@apply mx-auto max-w-screen-md px-8;
 	}
 
-	.focus-outline {
-		@apply outline-none outline-2 outline-offset-2
-			focus-visible:outline-purple-500;
+	main > *,
+	nav {
+		animation-name: fade-in;
+		animation-duration: 800ms;
+		animation-fill-mode: both;
+		animation-timing-function: cubic-bezier(0.37, 0.69, 0.39, 0.99);
 	}
 
-	.link {
-		@apply focus-outline rounded-lg
-			inline-block no-underline mx-0.5 text-purple-600 font-semibold relative transition duration-300
-			after:absolute after:block after:-inset-x-1 after:bottom-1 after:h-4 after:opacity-10 after:bg-current after:rounded-full after:transition-all after:duration-300
-			hocus:text-purple-700 hocus:after:inset-x-0 hocus:after:bottom-1 hocus:after:h-2 hocus:after:opacity-30;
+	nav {
+		animation-delay: 1500ms;
+	}
+
+	@each $i in 1, 2, 3, 4, 5, 6, 7, 8, 9 {
+		main > *:nth-child($(i)) {
+			animation-delay: calc($(i) * 100ms);
+		}
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(1rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 }
 

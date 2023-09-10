@@ -1,20 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
+import type { NowPlayingResponse } from '$lib/types';
 import Spotify from 'spotify-web-api-node';
-
-export type NowPlayingResponseSuccess = {
-	/**
-	 * Whether the track is from recently played or currently playing.
-	 */
-	isPlayingNow: boolean;
-	isPaused: boolean;
-	progessMs: number;
-	track: SpotifyApi.TrackObjectFull | null;
-};
-export type NowPlayingResponseError = { error: unknown };
-export type NowPlayingResponse =
-	| NowPlayingResponseSuccess
-	| NowPlayingResponseError;
 
 const api = new Spotify({
 	clientId: env.SPOTIFY_CLIENT_ID,
@@ -32,7 +19,7 @@ export async function GET() {
 			expirationTime = Date.now() + response.body.expires_in * 1000;
 		}
 
-		let response: NowPlayingResponseSuccess = {
+		const response: NowPlayingResponse = {
 			isPlayingNow: false,
 			isPaused: false,
 			progessMs: 0,
@@ -58,6 +45,19 @@ export async function GET() {
 
 		return json(response);
 	} catch (err) {
-		throw error(500, (err as any)?.message ?? err ?? 'Unknown error');
+		console.error(err);
+
+		throw error(
+			500,
+			`${
+				!err
+					? 'Unknown error'
+					: typeof err !== 'object'
+					? err
+					: 'message' in err
+					? err.message
+					: err
+			}`
+		);
 	}
 }

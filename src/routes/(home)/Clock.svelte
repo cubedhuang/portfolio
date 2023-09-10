@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { now } from '$lib/stores';
 
-	import Sun from './icons/Sun.svelte';
-	import Moon from './icons/Moon.svelte';
+	import Sun from '$lib/components/icons/Sun.svelte';
+	import Moon from '$lib/components/icons/Moon.svelte';
 
 	const df = new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',
@@ -22,12 +22,14 @@
 	$: isDay = $now.getUTCHours() - 4 >= 6 && $now.getUTCHours() - 4 < 18;
 </script>
 
-{#if isDay}
-	<Sun />
-{:else}
-	<Moon />
-{/if}
+<p class="mt-8 flex text-sm gap-2 items-center text-white">
+	{#if isDay}
+		<Sun />
+	{:else}
+		<Moon />
+	{/if}
 
-{df.format($now)}
-&middot;
-{tf.format($now)}
+	{df.format($now)}
+	&middot;
+	{tf.format($now)}
+</p>
