@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { useLanyard } from 'sk-lanyard';
+	import Image from 'svelte-aio';
 
 	const discordId = '299707523370319883';
 	const lanyard = useLanyard({
@@ -20,9 +21,11 @@
 <div class="mt-8 flex rounded-full items-center bg-gray-900">
 	<div class="relative w-20 h-20 shrink-0">
 		{#if $lanyard}
-			<img
+			<Image
 				src="https://cdn.discordapp.com/avatars/{discordId}/{$lanyard
 					?.discord_user.avatar}"
+				width={160}
+				height={160}
 				alt=""
 				class="w-20 h-20 rounded-full bg-gray-800"
 			/>

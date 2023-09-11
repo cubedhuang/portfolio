@@ -14,7 +14,8 @@
 	"type": "module",
 	"dependencies": {
 		"@spotify/web-api-ts-sdk": "^1.1.2",
-		"sk-lanyard": "^0.2.7"
+		"sk-lanyard": "^0.2.7",
+		"svelte-aio": "^1.0.1"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20230904.0",
