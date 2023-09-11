@@ -56,8 +56,6 @@ export async function GET({ fetch, platform }) {
 			}
 		).then(res => res.json());
 
-		console.log(response);
-
 		await kv.put('accessToken', JSON.stringify(response));
 		await kv.put(
 			'expirationTime',
@@ -87,7 +85,7 @@ export async function GET({ fetch, platform }) {
 	};
 	const playing = await api.player.getCurrentlyPlayingTrack();
 
-	if (playing.item && 'album' in playing.item) {
+	if (playing?.item && 'album' in playing.item) {
 		response.isPlayingNow = true;
 		response.track = playing.item;
 		response.isPaused = !playing.is_playing;
