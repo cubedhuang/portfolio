@@ -3,20 +3,28 @@ import { env } from '$env/dynamic/private';
 import type { NowPlayingResponse } from '$lib/types';
 import Spotify from 'spotify-web-api-node';
 
-const api = new Spotify({
-	clientId: env.SPOTIFY_CLIENT_ID,
-	clientSecret: env.SPOTIFY_CLIENT_SECRET,
-	refreshToken: env.SPOTIFY_REFRESH_TOKEN
-});
-let expirationTime = 0;
+export async function GET({ platform }) {
+	const api = new Spotify({
+		clientId: env.SPOTIFY_CLIENT_ID,
+		clientSecret: env.SPOTIFY_CLIENT_SECRET,
+		refreshToken: env.SPOTIFY_REFRESH_TOKEN
+	});
 
-export async function GET() {
 	try {
-		if (Date.now() > expirationTime) {
+		const accessToken = await platform?.env?.SPOTIFY_KV.get('accessToken');
+		const expirationTime =
+			Number(await platform?.env?.SPOTIFY_KV.get('expirationTime')) || 0;
+
+		if (!accessToken || Date.now() > expirationTime) {
 			const response = await api.refreshAccessToken();
 			api.setAccessToken(response.body.access_token);
 
-			expirationTime = Date.now() + response.body.expires_in * 1000;
+			await platform?.env?.SPOTIFY_KV.put(
+				'expirationTime',
+				`${Date.now() + response.body.expires_in * 1000}`
+			);
+		} else {
+			api.setAccessToken(accessToken);
 		}
 
 		const response: NowPlayingResponse = {
