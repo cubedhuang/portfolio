@@ -1,3 +1,5 @@
+import type { Track } from '@spotify/web-api-ts-sdk';
+
 export type NowPlayingResponse = {
 	/**
 	 * Whether the track is from recently played or currently playing.
@@ -5,5 +7,5 @@ export type NowPlayingResponse = {
 	isPlayingNow: boolean;
 	isPaused: boolean;
 	progessMs: number;
-	track: SpotifyApi.TrackObjectFull | null;
+	track: Track | null;
 };
