@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { useLanyard } from 'sk-lanyard';
 
+	import Discord from '$lib/components/icons/Discord.svelte';
+
 	const discordId = '299707523370319883';
 	const lanyard = useLanyard({
 		method: 'rest',
@@ -18,21 +20,28 @@
 </script>
 
 <div class="mt-8 flex rounded-full items-center bg-gray-900">
-	<div class="relative w-20 h-20 shrink-0">
+	<div class="relative w-20 h-20 shrink-0 rounded-full">
 		{#if $lanyard}
-			<img
-				src="https://cdn.discordapp.com/avatars/{discordId}/{$lanyard
-					?.discord_user.avatar}"
-				alt=""
-				class="w-20 h-20 rounded-full bg-gray-800"
-			/>
+			<object
+				data="https://cdn.discordapp.com/avatars/{discordId}/{$lanyard
+					.discord_user.avatar}"
+				type="image/png"
+				class="w-20 h-20 rounded-full bg-gray-800 text-gray-400 grid place-items-center"
+				aria-label="Discord Avatar"
+			>
+				<Discord />
+			</object>
 
 			<span
 				class="z-10 absolute w-4 h-4 bottom-1 right-1 rounded-full ring-4 ring-gray-900
 					{statusColors[$lanyard.discord_status]}"
 			/>
 		{:else}
-			<div class="w-20 h-20 rounded-full bg-gray-800" />
+			<div
+				class="w-20 h-20 rounded-full bg-gray-800 text-gray-400 grid place-items-center"
+			>
+				<Discord />
+			</div>
 		{/if}
 	</div>
 
