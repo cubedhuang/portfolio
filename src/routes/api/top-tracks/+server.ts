@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { getSpotifyAccessToken } from '$lib/server/spotify';
+import type { SpotifyTimeRange } from '$lib/types';
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { error, json } from '@sveltejs/kit';
 
@@ -18,7 +19,7 @@ export async function GET({ fetch, platform, setHeaders, url }) {
 
 	const items = await api.currentUser.topItems(
 		'tracks',
-		range as 'short_term',
+		range as SpotifyTimeRange,
 		50
 	);
 

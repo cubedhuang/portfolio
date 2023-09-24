@@ -2,27 +2,30 @@
 	import { browser } from '$app/environment';
 	import Meta from '$lib/components/Meta.svelte';
 
-	import type { TopTracksResponse } from '$lib/types';
+	import type { SpotifyTimeRange, TopTracksResponse } from '$lib/types';
 
-	const options = [
+	const options: {
+		name: string;
+		value: SpotifyTimeRange;
+	}[] = [
 		{ name: 'Past Month', value: 'short_term' },
 		{ name: 'Past 6 Months', value: 'medium_term' },
 		{ name: 'All Time', value: 'long_term' }
 	];
 
-	const tracks = {
-		short_term: null as TopTracksResponse | null,
-		medium_term: null as TopTracksResponse | null,
-		long_term: null as TopTracksResponse | null
+	const tracks: Record<SpotifyTimeRange, TopTracksResponse | null> = {
+		short_term: null,
+		medium_term: null,
+		long_term: null
 	};
 
 	let selectedRange = options[0].value;
 
 	$: if (browser) {
-		fetchTopTracks(selectedRange as 'short_term');
+		fetchTopTracks(selectedRange);
 	}
 
-	function fetchTopTracks(range: 'short_term' | 'medium_term' | 'long_term') {
+	function fetchTopTracks(range: SpotifyTimeRange) {
 		if (tracks[range]) return;
 
 		tracks[range] = [];
@@ -34,8 +37,7 @@
 			});
 	}
 
-	$: currentRange =
-		tracks[selectedRange as 'short_term' | 'medium_term' | 'long_term'];
+	$: currentRange = tracks[selectedRange];
 </script>
 
 <Meta

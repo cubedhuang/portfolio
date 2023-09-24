@@ -11,3 +11,5 @@ export type NowPlayingResponse = {
 };
 
 export type TopTracksResponse = Track[];
+
+export type SpotifyTimeRange = 'short_term' | 'medium_term' | 'long_term';
