@@ -24,7 +24,7 @@ export async function GET({ fetch, platform, setHeaders, url }) {
 	);
 
 	setHeaders({
-		'Cache-Control': 'max-age=0, s-max-age=300'
+		'Cache-Control': 'public, max-age=0, s-maxage=300'
 	});
 
 	return json(items.items);

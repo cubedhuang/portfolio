@@ -33,7 +33,7 @@ export async function GET({ fetch, platform, setHeaders }) {
 	}
 
 	setHeaders({
-		'Cache-Control': 'max-age=0, s-max-age=3'
+		'Cache-Control': 'public, max-age=0, s-maxage=3'
 	});
 
 	return json(response);
