@@ -3,8 +3,12 @@
 	import type { NowPlayingResponse } from '$lib/types';
 
 	import MusicalNote from '$lib/components/icons/MusicalNote.svelte';
+	import Pause from '$lib/components/icons/Pause.svelte';
+	import Play from '$lib/components/icons/Play.svelte';
+	import { now } from '$lib/stores';
 
 	let data: NowPlayingResponse | undefined;
+	let lastFetched = 0;
 
 	onMount(() => {
 		fetchNowPlaying();
@@ -17,8 +21,20 @@
 			.then(res => res.json())
 			.then(res => {
 				data = res;
+				lastFetched = Date.now();
 			});
 	}
+
+	function clamp(t: number) {
+		return Math.max(Math.min(t, 1), 0);
+	}
+
+	$: progress = data?.track
+		? clamp(
+				(data.progessMs + ($now.getTime() - lastFetched)) /
+					data.track.duration_ms
+		  )
+		: 0;
 </script>
 
 <div class="mt-4 flex rounded-full items-center bg-gray-900">
@@ -61,7 +77,7 @@
 		</div>
 	{/if}
 
-	<div class="pl-4 py-2 pr-6 relative">
+	<div class="pl-4 py-2 pr-4 relative">
 		<p class="line-clamp-1 break-all text-gray-400">
 			{#if data?.track}
 				<a
@@ -95,11 +111,36 @@
 			<MusicalNote />
 
 			{#if data?.isPlayingNow}
-				Listening on
+				Listening Now
 			{:else if data?.track}
-				Last Played on
+				Last Played on Spotify
 			{/if}
-			Spotify
 		</p>
 	</div>
+
+	{#if data?.isPlayingNow}
+		<div
+			class="ml-auto shrink-0 w-12 h-12 mr-4 rounded-full progress"
+			style:--progress={progress}
+		>
+			<div
+				class="w-10 h-10 rounded-full bg-gray-900 mt-1 ml-1 grid place-items-center text-gray-400"
+			>
+				{#if data.isPaused}
+					<Play />
+				{:else}
+					<Pause />
+				{/if}
+			</div>
+		</div>
+	{/if}
 </div>
+
+<style lang="postcss">
+	.progress {
+		background: conic-gradient(
+			theme('colors.gray.700') calc(var(--progress) * 100%),
+			theme('colors.gray.800') 0
+		);
+	}
+</style>
