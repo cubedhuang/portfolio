@@ -9,3 +9,5 @@ export type NowPlayingResponse = {
 	progessMs: number;
 	track: Track | null;
 };
+
+export type TopTracksResponse = Track[];

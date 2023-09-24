@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<main class="wrapper">
+<main class="wrapper fade">
 	<h1 class="text-6xl font-black">
 		{$page.status} &ndash;
 		{$page.error?.message ?? 'Unknown error'}

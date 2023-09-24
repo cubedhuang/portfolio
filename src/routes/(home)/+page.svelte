@@ -9,13 +9,12 @@
 	import Linkedin from '$lib/components/icons/Linkedin.svelte';
 	import Spotify from '$lib/components/icons/Spotify.svelte';
 	import Twitter from '$lib/components/icons/Twitter.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 </script>
 
-<svelte:head>
-	<title>Daniel</title>
-</svelte:head>
+<Meta title="Daniel" description="My portfolio and personal website." />
 
-<main class="wrapper">
+<main class="wrapper fade">
 	<h1 class="text-6xl font-black">Daniel!</h1>
 
 	<p class="mt-4 text-gray-400">
