@@ -40,14 +40,16 @@
 
 <Meta
 	title="Music – Daniel"
-	description="My most listened tracks on Spotify."
+	description="Tracks I've listened to the most on Spotify."
 />
 
 <main class="fade">
 	<div class="wrapper fade">
 		<h1 class="text-6xl font-black">Music</h1>
 
-		<p class="mt-4 text-gray-400">My most listened tracks on Spotify.</p>
+		<p class="mt-4 text-gray-400">
+			Tracks I've listened to the most on Spotify.
+		</p>
 
 		<div class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-gray-400">
 			{#each options as { name, value }}
