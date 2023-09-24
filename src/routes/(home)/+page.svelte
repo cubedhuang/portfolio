@@ -3,6 +3,7 @@
 	import DiscordInfo from './DiscordInfo.svelte';
 	import SocialLink from './SocialLink.svelte';
 	import SpotifyInfo from './SpotifyInfo.svelte';
+	import Weather from './Weather.svelte';
 
 	import GitHub from '$lib/components/icons/GitHub.svelte';
 	import Envelope from '$lib/components/icons/Envelope.svelte';
@@ -51,6 +52,7 @@
 	</div>
 
 	<Clock />
+	<Weather />
 
 	<DiscordInfo />
 	<SpotifyInfo />
