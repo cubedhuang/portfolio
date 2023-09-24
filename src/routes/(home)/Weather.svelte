@@ -32,7 +32,7 @@
 
 	<span>
 		{#if data}
-			It's currently
+			It's
 			<b>{data.main.temp.toFixed(0)} °F</b> with
 
 			{names[data.weather[0].description] ?? data.weather[0].description}
