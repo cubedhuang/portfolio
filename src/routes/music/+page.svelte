@@ -49,7 +49,7 @@
 
 		<p class="mt-4 text-gray-400">My most listened tracks on Spotify.</p>
 
-		<div class="mt-8 flex flex-wrap gap-x-8 text-gray-400">
+		<div class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-gray-400">
 			{#each options as { name, value }}
 				<label
 					class="transition cursor-pointer
@@ -96,13 +96,15 @@
 								{big ? 'sm:scale-[0.975]' : ''}"
 					>
 						<p
-							class="font-bold text-xl overflow-ellipsis leading-tight mb-1"
+							class="font-bold sm:text-xl line-clamp-3 !leading-tight mb-1"
 						>
 							{track.name}
 						</p>
 
 						{#each track.artists as artist}
-							<p class="text-sm text-gray-200 leading-tight">
+							<p
+								class="text-xs sm:text-sm text-gray-200 !leading-tight"
+							>
 								{artist.name}
 							</p>
 						{/each}
