@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { NowPlayingResponse } from '$lib/types';
+	import { fastNow } from '$lib/stores';
 
 	import MusicalNote from '$lib/components/icons/MusicalNote.svelte';
 	import Pause from '$lib/components/icons/Pause.svelte';
 	import Play from '$lib/components/icons/Play.svelte';
-	import { now } from '$lib/stores';
 
 	let data: NowPlayingResponse | undefined;
 	let lastFetched = 0;
@@ -31,7 +31,7 @@
 
 	$: progress = data?.track
 		? clamp(
-				(data.progessMs + ($now.getTime() - lastFetched)) /
+				(data.progessMs + ($fastNow.getTime() - lastFetched)) /
 					data.track.duration_ms
 		  )
 		: 0;
