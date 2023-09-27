@@ -7,5 +7,5 @@
 <main class="wrapper fade">
 	<h1 class="text-6xl font-black">Projects</h1>
 
-	<p class="mt-4 text-gray-400">Help</p>
+	<p class="mt-4 text-gray-400">Some of my projects.</p>
 </main>
