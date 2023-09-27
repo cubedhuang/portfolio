@@ -46,11 +46,13 @@
 	</div>
 
 	<div class="ml-4 py-2 pr-6">
-		<p class="text-white font-semibold">
+		<p class="line-clamp-1 break-all text-gray-400">
 			{#if $lanyard}
-				{$lanyard.discord_user.display_name}
+				<span class="font-semibold text-white">
+					{$lanyard.discord_user.display_name}
+				</span>
 
-				<span class="ml-1 text-gray-400 font-normal">
+				<span class="ml-1">
 					{$lanyard.discord_user.username}
 				</span>
 			{/if}

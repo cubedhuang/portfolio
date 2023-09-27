@@ -108,13 +108,17 @@
 		</p>
 
 		<p class="flex items-center gap-1 text-sm text-gray-400">
-			<MusicalNote />
+			<span class="shrink-0">
+				<MusicalNote />
+			</span>
 
-			{#if data?.isPlayingNow}
-				Listening Now
-			{:else if data?.track}
-				Last Played on Spotify
-			{/if}
+			<span class="line-clamp-1 break-all">
+				{#if data?.isPlayingNow}
+					Listening Now
+				{:else if data?.track}
+					Last Played on Spotify
+				{/if}
+			</span>
 		</p>
 	</div>
 
