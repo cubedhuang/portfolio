@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Meta from '$lib/components/Meta.svelte';
+	import Project from './Project.svelte';
 </script>
 
 <Meta title="Projects – Daniel" description="My projects." />
@@ -9,28 +10,13 @@
 
 	<p class="mt-4 text-gray-400">Some of my projects.</p>
 
-	<div
-		class="mt-8 -mx-8 group grid grid-cols-2 rounded-xl overflow-hidden background-image"
-		style:--url="url(/images/projects/nimi.png)"
-	>
-		<div class="p-8 m-8 rounded-xl bg-gray-900">
-			<h2 class="font-bold text-3xl">nimi.li</h2>
+	<Project name="nimi.li" src="/images/projects/nimi.png">
+		Interactive dictionary for the construction Toki Pona featuring data
+		about word usage in the community.
+	</Project>
 
-			<p class="mt-4 text-gray-400">
-				Interactive dictionary for the construction Toki Pona featuring
-				data about word usage in the community.
-			</p>
-		</div>
-	</div>
+	<Project name="debating.live" src="/images/projects/debating.png">
+		Real-time platform for timer sharing, speech tracking, and more for
+		timed debate formats.
+	</Project>
 </main>
-
-<style lang="postcss">
-	.background-image {
-		background-image: linear-gradient(
-				to bottom right,
-				theme('colors.gray.950/0.5'),
-				theme('colors.gray.950/0')
-			),
-			var(--url);
-	}
-</style>
