@@ -84,7 +84,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="aspect-square relative group transition rounded-xl overflow-hidden
-							{big ? 'sm:col-span-2 sm:row-span-2' : ''}"
+						{big ? 'sm:col-span-2 sm:row-span-2' : ''}"
 				>
 					<object
 						data={track.album.images[0].url}
@@ -96,8 +96,8 @@
 
 					<div
 						class="z-20 absolute inset-4 flex flex-col justify-end transition duration-300
-								scale-95 opacity-0 group-hv:scale-100 group-hv:opacity-100
-								{big ? 'sm:scale-[0.975]' : ''}"
+							scale-95 opacity-0 group-hv:scale-100 group-hv:opacity-100
+							{big ? 'sm:scale-[0.975]' : ''}"
 					>
 						<p
 							class="font-bold sm:text-xl line-clamp-3 !leading-tight mb-1"
