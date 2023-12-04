@@ -8,8 +8,8 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Inter', ...defaultTheme.fontFamily.sans],
-				display: ['InterDisplay', ...defaultTheme.fontFamily.serif]
+				sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
+				display: ['"Inter Display"', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},
