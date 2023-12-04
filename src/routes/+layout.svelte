@@ -11,6 +11,6 @@
 	</ul>
 </nav>
 
-<div class="mt-12 md:mt-20 mb-20">
+<div class="mt-12 md:mt-20 mb-20 md:mb-32">
 	<slot />
 </div>

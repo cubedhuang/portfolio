@@ -84,7 +84,7 @@
 					href={data.track.external_urls.spotify}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="mr-1 text-white font-semibold border-b border-transparent transition hocus-visible:border-current"
+					class="mr-1 text-white font-semibold border-b border-transparent transition hv:border-current"
 				>
 					{data.track.name}
 				</a>
@@ -97,7 +97,7 @@
 						href={artist.external_urls.spotify}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="border-b border-transparent transition hocus-visible:border-current"
+						class="border-b border-transparent transition hv:border-current"
 					>
 						{artist.name}</a
 					>

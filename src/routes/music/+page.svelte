@@ -90,13 +90,13 @@
 						data={track.album.images[0].url}
 						type="image/png"
 						class="w-full h-full rounded-xl bg-gray-800 transition duration-300
-								group-hocus-visible:brightness-50 group-hocus-visible:scale-[1.02]"
+								group-hv:brightness-50 group-hv:scale-[1.02]"
 						aria-label="Album Art"
 					/>
 
 					<div
 						class="z-20 absolute inset-4 flex flex-col justify-end transition duration-300
-								scale-95 opacity-0 group-hocus-visible:scale-100 group-hocus-visible:opacity-100
+								scale-95 opacity-0 group-hv:scale-100 group-hv:opacity-100
 								{big ? 'sm:scale-[0.975]' : ''}"
 					>
 						<p
