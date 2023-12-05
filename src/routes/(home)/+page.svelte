@@ -33,7 +33,7 @@
 		<b>Atlanta, Georgia</b>.
 	</p>
 
-	<div class="mt-4 flex gap-4">
+	<div class="mt-4 flex gap-6">
 		<SocialLink href="https://github.com/cubedhuang" name="GitHub">
 			<GitHub />
 		</SocialLink>
