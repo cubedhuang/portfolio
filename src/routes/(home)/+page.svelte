@@ -1,5 +1,5 @@
 <script lang="ts">
-	import differenceInYears from 'date-fns/differenceInYears';
+	import { differenceInYears } from 'date-fns/differenceInYears';
 
 	import { now } from '$lib/stores';
 
@@ -24,7 +24,7 @@
 <Meta title="Daniel" description="My portfolio and personal website." />
 
 <main class="wrapper fade">
-	<h1 class="text-6xl font-black">Daniel!</h1>
+	<h1 class="text-6xl font-black">Daniel Huang</h1>
 
 	<p class="mt-4 text-gray-400">
 		Hey! I'm <b>Daniel</b>,

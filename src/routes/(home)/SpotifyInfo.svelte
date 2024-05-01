@@ -33,7 +33,7 @@
 		? clamp(
 				(data.progessMs + ($fastNow.getTime() - lastFetched)) /
 					data.track.duration_ms
-		  )
+			)
 		: 0;
 </script>
 
@@ -117,6 +117,8 @@
 					Listening Now
 				{:else if data?.track}
 					Last Played on Spotify
+				{:else}
+					Spotify
 				{/if}
 			</span>
 		</p>
