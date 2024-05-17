@@ -35,7 +35,7 @@
 		y: number;
 		vx: number;
 		vy: number;
-		color: string;
+		hue: number;
 
 		constructor() {
 			this.#r = Math.random() * 1 + 1;
@@ -44,11 +44,11 @@
 
 			this.vx = 0;
 			this.vy = 0;
-			this.color = `hsla(${Math.random() * 60 + 240}, 100%, 50%, 0.1)`;
+			this.hue = Math.random() * 60 + 240;
 		}
 
 		get r() {
-			return (this.#r * width * height * devicePixelRatio) / 4000;
+			return (this.#r * width * height * devicePixelRatio) / 8000;
 		}
 	}
 
@@ -101,10 +101,10 @@
 		ctx.clearRect(0, 0, width, height);
 
 		for (const boid of boids) {
-			console.log(boid.r);
-
 			ctx.beginPath();
 			ctx.arc(boid.x, boid.y, boid.r, 0, Math.PI * 2);
+
+			const color = `hsla(${boid.hue}, 100%, 50%, 0.1)`;
 
 			const gradient = ctx.createRadialGradient(
 				boid.x,
@@ -114,8 +114,8 @@
 				boid.y,
 				boid.r
 			);
-			gradient.addColorStop(0, boid.color);
-			gradient.addColorStop(1, `hsla(0, 0%, 0%, 0)`);
+			gradient.addColorStop(0, color);
+			gradient.addColorStop(1, `hsla(${boid.hue}, 100%, 50%, 0)`);
 
 			ctx.fillStyle = gradient;
 			ctx.fill();
