@@ -1,0 +1,273 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	let canvas: HTMLCanvasElement;
+	let refDiv: HTMLDivElement;
+	let ctx: CanvasRenderingContext2D;
+
+	let width: number;
+	let height: number;
+
+	// type Boid = {
+	// 	x: number;
+	// 	y: number;
+	// 	vx: number;
+	// 	vy: number;
+	// 	r: number;
+	// 	color: string;
+	// };
+
+	// function boid(): Boid {
+	// 	return {
+	// 		x: Math.random() * width,
+	// 		y: Math.random() * height,
+	// 		vx: 0,
+	// 		vy: 0,
+	// 		r: Math.random() * 1 + 1,
+	// 		color: `hsla(${Math.random() * 60 + 240}, 100%, 50%, 0.08)`
+	// 	};
+	// }
+
+	class Boid {
+		#r: number;
+
+		x: number;
+		y: number;
+		vx: number;
+		vy: number;
+		color: string;
+
+		constructor() {
+			this.#r = Math.random() * 1 + 1;
+			this.x = Math.random() * (width + 2 * this.r) - this.r;
+			this.y = Math.random() * (height + 2 * this.r) - this.r;
+
+			this.vx = 0;
+			this.vy = 0;
+			this.color = `hsla(${Math.random() * 60 + 240}, 100%, 50%, 0.1)`;
+		}
+
+		get r() {
+			return (this.#r * width * height * devicePixelRatio) / 4000;
+		}
+	}
+
+	const boids: Boid[] = [];
+
+	function resize() {
+		ctx.resetTransform();
+
+		const dw = window.innerWidth / width;
+		const dh = refDiv.clientHeight / height;
+
+		for (const boid of boids) {
+			boid.x *= dw;
+			boid.y *= dh;
+		}
+
+		width = window.innerWidth;
+		height = refDiv.clientHeight;
+
+		canvas.width = width * devicePixelRatio;
+		canvas.height = height * devicePixelRatio;
+
+		ctx.scale(devicePixelRatio, devicePixelRatio);
+
+		const amount = 20;
+
+		if (boids.length < amount) {
+			while (boids.length < amount) {
+				boids.push(new Boid());
+			}
+		} else if (boids.length > amount) {
+			while (boids.length > amount) {
+				boids.pop();
+			}
+		}
+	}
+
+	const mouse = {
+		x: 0,
+		sx: 0,
+		y: 0,
+		sy: 0,
+		strength: 0,
+		sstrength: 0,
+		pressed: false,
+		spressed: 0
+	};
+
+	function draw() {
+		ctx.clearRect(0, 0, width, height);
+
+		for (const boid of boids) {
+			console.log(boid.r);
+
+			ctx.beginPath();
+			ctx.arc(boid.x, boid.y, boid.r, 0, Math.PI * 2);
+
+			const gradient = ctx.createRadialGradient(
+				boid.x,
+				boid.y,
+				0,
+				boid.x,
+				boid.y,
+				boid.r
+			);
+			gradient.addColorStop(0, boid.color);
+			gradient.addColorStop(1, `hsla(0, 0%, 0%, 0)`);
+
+			ctx.fillStyle = gradient;
+			ctx.fill();
+		}
+
+		ctx.beginPath();
+		ctx.arc(mouse.sx, mouse.sy, mouse.sstrength * 100, 0, Math.PI * 2);
+
+		const gradient = ctx.createRadialGradient(
+			mouse.sx,
+			mouse.sy,
+			0,
+			mouse.sx,
+			mouse.sy,
+			mouse.sstrength * 100
+		);
+		gradient.addColorStop(
+			0,
+			`hsla(270, 100%, 50%, ${
+				mouse.sstrength * (mouse.spressed * 0.125 + 0.125)
+			})`
+		);
+		gradient.addColorStop(1, `hsla(270, 100%, 50%, 0)`);
+
+		ctx.fillStyle = gradient;
+		ctx.fill();
+	}
+
+	function update() {
+		for (const boid of boids) {
+			boid.x += boid.vx;
+			boid.y += boid.vy;
+
+			if (boid.x < -boid.r) {
+				boid.x += width + 2 * boid.r;
+			} else if (boid.x > width + boid.r) {
+				boid.x -= width + 2 * boid.r;
+			}
+
+			if (boid.y < -boid.r) {
+				boid.y += height + 2 * boid.r;
+			} else if (boid.y > height + boid.r) {
+				boid.y -= height + 2 * boid.r;
+			}
+
+			const dxMouse = boid.x - mouse.x;
+			const dyMouse = boid.y - mouse.y;
+			const distMouse = Math.hypot(dxMouse, dyMouse);
+
+			if (distMouse < 200) {
+				const effectiveDistMouse = Math.max(20, distMouse);
+				const force =
+					(1 / effectiveDistMouse / effectiveDistMouse) *
+					mouse.strength *
+					(mouse.pressed ? -10 : 1);
+
+				boid.vx += dxMouse * force;
+				boid.vy += dyMouse * force;
+			}
+
+			for (const other of boids) {
+				if (boid === other) continue;
+
+				const dx = boid.x - other.x;
+				const dy = boid.y - other.y;
+				const dist = Math.hypot(dx, dy);
+
+				if (dist < 200) {
+					boid.vx += (dx / dist / dist) * 0.5;
+					boid.vy += (dy / dist / dist) * 0.5;
+				}
+			}
+
+			boid.vx *= 0.99;
+			boid.vy *= 0.99;
+		}
+
+		if (!mouse.pressed) {
+			mouse.strength *= 0.95;
+		}
+
+		mouse.sx += (mouse.x - mouse.sx) * 0.15;
+		mouse.sy += (mouse.y - mouse.sy) * 0.15;
+		mouse.sstrength += (mouse.strength - mouse.sstrength) * 0.1;
+		mouse.spressed += ((mouse.pressed ? 1 : 0) - mouse.spressed) * 0.1;
+	}
+
+	let animationFrameRequest: number;
+
+	function loop() {
+		update();
+		draw();
+
+		animationFrameRequest = requestAnimationFrame(loop);
+	}
+
+	onMount(() => {
+		ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+		resize();
+
+		loop();
+
+		return () => cancelAnimationFrame(animationFrameRequest);
+	});
+</script>
+
+<svelte:window
+	on:resize={resize}
+	on:mousemove={e => {
+		mouse.x = e.clientX;
+		mouse.y = e.clientY;
+		mouse.strength = 1;
+	}}
+	on:touchmove={e => {
+		mouse.x = e.touches[0].clientX;
+		mouse.y = e.touches[0].clientY;
+		mouse.strength = 1;
+	}}
+	on:mousedown={() => {
+		mouse.pressed = true;
+		mouse.strength = 1;
+	}}
+	on:touchstart={() => {
+		mouse.pressed = true;
+		mouse.strength = 1;
+	}}
+	on:mouseup={() => {
+		mouse.pressed = false;
+	}}
+	on:touchend={() => {
+		mouse.pressed = false;
+	}}
+	on:mouseleave={() => {
+		mouse.pressed = false;
+	}}
+	on:touchcancel={() => {
+		mouse.pressed = false;
+	}}
+	on:blur={() => {
+		mouse.pressed = false;
+	}}
+/>
+
+<div aria-hidden="true" class="h-[100lvh] fixed" bind:this={refDiv}></div>
+
+<canvas
+	class="w-screen h-screen fixed -z-10 top-0 left-0 bg-transparent pointer-events-none"
+	bind:this={canvas}
+></canvas>
+
+<style lang="postcss">
+	canvas {
+		view-transition-name: background;
+	}
+</style>

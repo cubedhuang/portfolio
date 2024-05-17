@@ -3,7 +3,7 @@
 </script>
 
 <main class="wrapper fade">
-	<h1 class="text-6xl font-black">
+	<h1 class="header">
 		{$page.status} &ndash;
 		{$page.error?.message ?? 'Unknown error'}
 	</h1>

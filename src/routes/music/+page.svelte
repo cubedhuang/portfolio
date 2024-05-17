@@ -47,7 +47,7 @@
 
 <main>
 	<div class="wrapper fade">
-		<h1 class="text-6xl font-black">Music</h1>
+		<h1 class="header">Music</h1>
 
 		<p class="mt-4 text-gray-400">
 			Tracks I've listened to the most on Spotify.

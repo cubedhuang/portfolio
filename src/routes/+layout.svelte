@@ -4,6 +4,7 @@
 	import { onNavigate } from '$app/navigation';
 
 	import NavLink from './NavLink.svelte';
+	import BackgroundEffect from './BackgroundEffect.svelte';
 
 	onNavigate(navigation => {
 		if (!document.startViewTransition) return;
@@ -17,6 +18,8 @@
 	});
 </script>
 
+<BackgroundEffect />
+
 <nav class="wrapper mt-20 md:mt-32 text-gray-400">
 	<ul class="flex flex-wrap gap-x-12 gap-y-2">
 		<NavLink href="/">Home</NavLink>
@@ -25,7 +28,7 @@
 	</ul>
 </nav>
 
-<div class="mt-12 md:mt-20 mb-20 md:mb-32">
+<div class="mt-16 md:mt-20 mb-20 md:mb-32">
 	<slot />
 </div>
 

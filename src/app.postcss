@@ -4,9 +4,8 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-	html,
-	body {
-		@apply bg-black text-white;
+	html {
+		@apply bg-gray-950 text-white;
 
 		color-scheme: dark;
 	}
@@ -48,6 +47,10 @@
 @layer components {
 	.wrapper {
 		@apply mx-auto max-w-screen-md px-8;
+	}
+
+	.header {
+		@apply text-5xl lg:text-6xl font-black;
 	}
 
 	.fade > *,

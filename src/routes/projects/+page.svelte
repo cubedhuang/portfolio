@@ -6,7 +6,7 @@
 <Meta title="Projects – Daniel" description="My projects." />
 
 <main class="wrapper fade">
-	<h1 class="text-6xl font-black">Projects</h1>
+	<h1 class="header">Projects</h1>
 
 	<p class="mt-4 mb-8 text-gray-400">Some of my projects.</p>
 
