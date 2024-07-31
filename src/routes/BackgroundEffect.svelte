@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { spring } from 'svelte/motion';
 
 	let canvas: HTMLCanvasElement;
 	let refDiv: HTMLDivElement;
@@ -7,26 +8,6 @@
 
 	let width: number;
 	let height: number;
-
-	// type Boid = {
-	// 	x: number;
-	// 	y: number;
-	// 	vx: number;
-	// 	vy: number;
-	// 	r: number;
-	// 	color: string;
-	// };
-
-	// function boid(): Boid {
-	// 	return {
-	// 		x: Math.random() * width,
-	// 		y: Math.random() * height,
-	// 		vx: 0,
-	// 		vy: 0,
-	// 		r: Math.random() * 1 + 1,
-	// 		color: `hsla(${Math.random() * 60 + 240}, 100%, 50%, 0.08)`
-	// 	};
-	// }
 
 	class Boid {
 		#r: number;
@@ -86,16 +67,15 @@
 		}
 	}
 
-	const mouse = {
-		x: 0,
-		sx: 0,
-		y: 0,
-		sy: 0,
-		strength: 0,
-		sstrength: 0,
-		pressed: false,
-		spressed: 0
-	};
+	const mousePosition = spring(
+		{ x: 0, y: 0 },
+		{
+			stiffness: 0.1,
+			damping: 0.3
+		}
+	);
+	const mouseStrength = spring(0);
+	const mousePressed = spring(0);
 
 	function draw() {
 		ctx.clearRect(0, 0, width, height);
@@ -122,20 +102,26 @@
 		}
 
 		ctx.beginPath();
-		ctx.arc(mouse.sx, mouse.sy, mouse.sstrength * 100, 0, Math.PI * 2);
+		ctx.arc(
+			$mousePosition.x,
+			$mousePosition.y,
+			$mouseStrength * 100,
+			0,
+			Math.PI * 2
+		);
 
 		const gradient = ctx.createRadialGradient(
-			mouse.sx,
-			mouse.sy,
+			$mousePosition.x,
+			$mousePosition.y,
 			0,
-			mouse.sx,
-			mouse.sy,
-			mouse.sstrength * 100
+			$mousePosition.x,
+			$mousePosition.y,
+			$mouseStrength * 100
 		);
 		gradient.addColorStop(
 			0,
 			`hsla(270, 100%, 50%, ${
-				mouse.sstrength * (mouse.spressed * 0.125 + 0.125)
+				$mouseStrength * ($mousePressed * 0.125 + 0.125)
 			})`
 		);
 		gradient.addColorStop(1, `hsla(270, 100%, 50%, 0)`);
@@ -161,21 +147,6 @@
 				boid.y -= height + 2 * boid.r;
 			}
 
-			const dxMouse = boid.x - mouse.x;
-			const dyMouse = boid.y - mouse.y;
-			const distMouse = Math.hypot(dxMouse, dyMouse);
-
-			if (distMouse < 200) {
-				const effectiveDistMouse = Math.max(20, distMouse);
-				const force =
-					(1 / effectiveDistMouse / effectiveDistMouse) *
-					mouse.strength *
-					(mouse.pressed ? -10 : 1);
-
-				boid.vx += dxMouse * force;
-				boid.vy += dyMouse * force;
-			}
-
 			for (const other of boids) {
 				if (boid === other) continue;
 
@@ -193,14 +164,13 @@
 			boid.vy *= 0.99;
 		}
 
-		if (!mouse.pressed) {
-			mouse.strength *= 0.95;
+		if ($mousePressed < 0.01) {
+			$mouseStrength = $mouseStrength * 0.9;
+		} else {
+			$mouseStrength = $mouseStrength * 0.9 + 0.1;
 		}
 
-		mouse.sx += (mouse.x - mouse.sx) * 0.15;
-		mouse.sy += (mouse.y - mouse.sy) * 0.15;
-		mouse.sstrength += (mouse.strength - mouse.sstrength) * 0.1;
-		mouse.spressed += ((mouse.pressed ? 1 : 0) - mouse.spressed) * 0.1;
+		console.log($mouseStrength);
 	}
 
 	let animationFrameRequest: number;
@@ -225,37 +195,34 @@
 <svelte:window
 	on:resize={resize}
 	on:mousemove={e => {
-		mouse.x = e.clientX;
-		mouse.y = e.clientY;
-		mouse.strength = 1;
+		$mousePosition = { x: e.clientX, y: e.clientY };
+		$mouseStrength = 1;
 	}}
 	on:touchmove={e => {
-		mouse.x = e.touches[0].clientX;
-		mouse.y = e.touches[0].clientY;
-		mouse.strength = 1;
+		$mousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+		$mouseStrength = 1;
 	}}
 	on:mousedown={() => {
-		mouse.pressed = true;
-		mouse.strength = 1;
+		$mousePressed = 1;
 	}}
 	on:touchstart={() => {
-		mouse.pressed = true;
-		mouse.strength = 1;
+		$mousePressed = 1;
+		$mouseStrength = 1;
 	}}
 	on:mouseup={() => {
-		mouse.pressed = false;
+		$mousePressed = 0;
 	}}
 	on:touchend={() => {
-		mouse.pressed = false;
+		$mousePressed = 0;
 	}}
 	on:mouseleave={() => {
-		mouse.pressed = false;
+		$mousePressed = 0;
 	}}
 	on:touchcancel={() => {
-		mouse.pressed = false;
+		$mousePressed = 0;
 	}}
 	on:blur={() => {
-		mouse.pressed = false;
+		$mousePressed = 0;
 	}}
 />
 
