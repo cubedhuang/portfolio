@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../app.postcss';
 
 	import { onNavigate } from '$app/navigation';
@@ -6,8 +6,23 @@
 	import NavLink from './NavLink.svelte';
 	import BackgroundEffect from './BackgroundEffect.svelte';
 
+	function getBaseRoute(pathname: string | undefined) {
+		return pathname?.match(/\/[^/]*/)?.[0] ?? '/';
+	}
+
+	const order = ['/', '/projects', '/music'];
+
 	onNavigate(navigation => {
 		if (!document.startViewTransition) return;
+
+		const from = getBaseRoute(navigation.from?.url.pathname);
+		const to = getBaseRoute(navigation.to?.url.pathname);
+
+		const fromIndex = order.indexOf(from);
+		const toIndex = order.indexOf(to);
+
+		const direction = fromIndex < toIndex ? '-1' : '1';
+		document.documentElement.style.setProperty('--direction', direction);
 
 		return new Promise(resolve => {
 			document.startViewTransition(async () => {
@@ -45,28 +60,28 @@
 		}
 	}
 
-	@keyframes slide-from-right {
+	@keyframes slide-in {
 		from {
-			transform: translateX(theme(width.8));
+			transform: translateX(calc(-1 * theme(width.8) * var(--direction)));
 		}
 	}
 
-	@keyframes slide-to-left {
+	@keyframes slide-out {
 		to {
-			transform: translateX(calc(-1 * theme(width.8)));
+			transform: translateX(calc(theme(width.8) * var(--direction)));
 		}
 	}
 
 	:root::view-transition-old(content) {
 		animation:
 			90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-out;
 	}
 
 	:root::view-transition-new(content) {
 		animation:
 			210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-in;
 	}
 
 	nav {
