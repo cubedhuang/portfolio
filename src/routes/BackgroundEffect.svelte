@@ -169,8 +169,6 @@
 		} else {
 			$mouseStrength = $mouseStrength * 0.9 + 0.1;
 		}
-
-		console.log($mouseStrength);
 	}
 
 	let animationFrameRequest: number;
