@@ -1,8 +1,4 @@
 <script lang="ts">
-	import { differenceInYears } from 'date-fns/differenceInYears';
-
-	import { now } from '$lib/stores';
-
 	import Clock from './Clock.svelte';
 	import DiscordInfo from './DiscordInfo.svelte';
 	import SocialLink from './SocialLink.svelte';
@@ -15,10 +11,6 @@
 	import Spotify from '$lib/components/icons/Spotify.svelte';
 	import Twitter from '$lib/components/icons/Twitter.svelte';
 	import Meta from '$lib/components/Meta.svelte';
-
-	const birthday = new Date('2006-05-17T10:06:00.000Z');
-
-	$: age = differenceInYears($now, birthday);
 </script>
 
 <Meta title="Daniel" description="My portfolio and personal website." />
@@ -27,9 +19,7 @@
 	<h1 class="header">Daniel Huang</h1>
 
 	<p class="mt-4 text-gray-400">
-		Hey! I'm <b>Daniel</b>,
-		{age === 18 ? 'an' : 'a'}
-		{age}-year-old developer from
+		Hey! I'm <b>Daniel</b>, a frontend developer from
 		<b>Atlanta, Georgia</b>.
 	</p>
 
@@ -56,7 +46,7 @@
 			<Spotify />
 		</SocialLink>
 
-		<SocialLink href="mailto:99danielh@gmail.com" name="Email">
+		<SocialLink href="mailto:daniel@huang.com" name="Email">
 			<Envelope />
 		</SocialLink>
 	</div>
