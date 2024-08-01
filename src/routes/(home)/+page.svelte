@@ -46,7 +46,7 @@
 			<Spotify />
 		</SocialLink>
 
-		<SocialLink href="mailto:daniel@huang.com" name="Email">
+		<SocialLink href="mailto:daniel@huang.bio" name="Email">
 			<Envelope />
 		</SocialLink>
 	</div>
