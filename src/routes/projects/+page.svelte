@@ -39,7 +39,7 @@
 
 	<Project
 		name="Boids"
-		href="https://boids.cubedhuang.com"
+		href="https://boids.dan.onl"
 		src="/images/projects/boids.png"
 	>
 		An interactive web-based simulation of flocking behavior with adjustable
