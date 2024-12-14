@@ -47,6 +47,14 @@
 	</Project>
 
 	<Project
+		name="Battleship"
+		href="https://battleship.dan.onl"
+		src="/images/projects/battleship.png"
+	>
+		A simple Battleship interface with computer adversaries to play online.
+	</Project>
+
+	<Project
 		name="Discord Code Generator"
 		href="https://embed.dan.onl"
 		src="/images/projects/embed.png"
