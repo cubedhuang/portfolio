@@ -2,9 +2,7 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
-	let canvas: HTMLCanvasElement;
 	let refDiv: HTMLDivElement;
-	let ctx: CanvasRenderingContext2D;
 
 	let width: number;
 	let height: number;
@@ -33,11 +31,9 @@
 		}
 	}
 
-	const boids: Boid[] = [];
+	let boids: Boid[] = [];
 
 	function resize() {
-		ctx.resetTransform();
-
 		const dw = window.innerWidth / width;
 		const dh = refDiv.clientHeight / height;
 
@@ -48,11 +44,6 @@
 
 		width = window.innerWidth;
 		height = refDiv.clientHeight;
-
-		canvas.width = width * devicePixelRatio;
-		canvas.height = height * devicePixelRatio;
-
-		ctx.scale(devicePixelRatio, devicePixelRatio);
 
 		const amount = 20;
 
@@ -76,59 +67,6 @@
 	);
 	const mouseStrength = spring(0);
 	const mousePressed = spring(0);
-
-	function draw() {
-		ctx.clearRect(0, 0, width, height);
-
-		for (const boid of boids) {
-			ctx.beginPath();
-			ctx.arc(boid.x, boid.y, boid.r, 0, Math.PI * 2);
-
-			const color = `hsla(${boid.hue}, 100%, 50%, 0.1)`;
-
-			const gradient = ctx.createRadialGradient(
-				boid.x,
-				boid.y,
-				0,
-				boid.x,
-				boid.y,
-				boid.r
-			);
-			gradient.addColorStop(0, color);
-			gradient.addColorStop(1, `hsla(${boid.hue}, 100%, 50%, 0)`);
-
-			ctx.fillStyle = gradient;
-			ctx.fill();
-		}
-
-		ctx.beginPath();
-		ctx.arc(
-			$mousePosition.x,
-			$mousePosition.y,
-			$mouseStrength * 100,
-			0,
-			Math.PI * 2
-		);
-
-		const gradient = ctx.createRadialGradient(
-			$mousePosition.x,
-			$mousePosition.y,
-			0,
-			$mousePosition.x,
-			$mousePosition.y,
-			$mouseStrength * 100
-		);
-		gradient.addColorStop(
-			0,
-			`hsla(270, 100%, 50%, ${
-				$mouseStrength * ($mousePressed * 0.125 + 0.125)
-			})`
-		);
-		gradient.addColorStop(1, `hsla(270, 100%, 50%, 0)`);
-
-		ctx.fillStyle = gradient;
-		ctx.fill();
-	}
 
 	function update() {
 		for (const boid of boids) {
@@ -169,21 +107,20 @@
 		} else {
 			$mouseStrength = $mouseStrength * 0.9 + 0.1;
 		}
+
+		boids = boids;
 	}
 
 	let animationFrameRequest: number;
 
 	function loop() {
 		update();
-		draw();
 
 		animationFrameRequest = requestAnimationFrame(loop);
 	}
 
 	onMount(() => {
-		ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 		resize();
-
 		loop();
 
 		return () => cancelAnimationFrame(animationFrameRequest);
@@ -226,13 +163,67 @@
 
 <div aria-hidden="true" class="h-[100lvh] fixed" bind:this={refDiv}></div>
 
-<canvas
-	class="w-screen h-screen fixed -z-10 top-0 left-0 bg-transparent pointer-events-none"
-	bind:this={canvas}
-></canvas>
+<svg
+	class="w-screen h-screen fixed -z-10 top-0 left-0 pointer-events-none"
+	viewBox="0 0 {width ?? 0} {height ?? 0}"
+>
+	<defs>
+		{#each boids as boid, i}
+			<radialGradient
+				id="boidGradient{i}"
+				cx="50%"
+				cy="50%"
+				r="50%"
+				fx="50%"
+				fy="50%"
+			>
+				<stop
+					offset="0%"
+					stop-color="hsla({boid.hue}, 100%, 50%, 0.1)"
+				/>
+				<stop
+					offset="100%"
+					stop-color="hsla({boid.hue}, 100%, 50%, 0)"
+				/>
+			</radialGradient>
+		{/each}
+
+		<radialGradient
+			id="mouseGradient"
+			cx="50%"
+			cy="50%"
+			r="50%"
+			fx="50%"
+			fy="50%"
+		>
+			<stop
+				offset="0%"
+				stop-color="hsla(270, 100%, 50%, {$mouseStrength *
+					($mousePressed * 0.125 + 0.125)})"
+			/>
+			<stop offset="100%" stop-color="hsla(270, 100%, 50%, 0)" />
+		</radialGradient>
+	</defs>
+
+	{#each boids as boid, i}
+		<circle
+			cx={boid.x}
+			cy={boid.y}
+			r={boid.r}
+			fill="url(#boidGradient{i})"
+		/>
+	{/each}
+
+	<circle
+		cx={$mousePosition.x}
+		cy={$mousePosition.y}
+		r={$mouseStrength * 100}
+		fill="url(#mouseGradient)"
+	/>
+</svg>
 
 <style lang="postcss">
-	canvas {
+	svg {
 		view-transition-name: background;
 	}
 </style>
