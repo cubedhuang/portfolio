@@ -70,7 +70,7 @@
 				{/if}
 
 				<span class="line-clamp-1 break-all">
-					{customStatus.state}
+					{customStatus.state || ''}
 				</span>
 			</p>
 		{/if}
