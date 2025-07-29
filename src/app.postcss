@@ -53,10 +53,18 @@
 		@apply text-5xl lg:text-6xl font-black;
 	}
 
+	.fade {
+		--fade-step: 70ms;
+	}
+
+	.fade.fade-fast {
+		--fade-step: 50ms;
+	}
+
 	.fade > *,
 	nav {
 		animation-name: fade-in;
-		animation-duration: 800ms;
+		animation-duration: theme(transitionDuration.700);
 		animation-fill-mode: backwards;
 		animation-timing-function: cubic-bezier(0.37, 0.69, 0.39, 0.99);
 	}
@@ -66,14 +74,16 @@
 	}
 
 	.fade-delay {
-		--fade-delay: 100ms;
+		--fade-delay: theme(transitionDuration.100);
 	}
 
 	@each $i in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 		19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
 		37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 {
 		.fade > *:nth-child($(i)) {
-			animation-delay: calc($(i) * 70ms + var(--fade-delay, 0ms));
+			animation-delay: calc(
+				$(i) * var(--fade-step) + var(--fade-delay, 0ms)
+			);
 		}
 	}
 
