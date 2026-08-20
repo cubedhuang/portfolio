@@ -19,8 +19,8 @@
 	<h1 class="header">Daniel Huang</h1>
 
 	<p class="mt-4 text-gray-400">
-		Hey! I'm <b>Daniel</b>, a software engineer and student of computer
-		science and linguistics at <b>Georgia Tech</b>.
+		Hey! I'm <b>Daniel</b>. I study computer science and linguistics at
+		Georgia Tech.
 	</p>
 
 	<div class="my-6 flex gap-6">
