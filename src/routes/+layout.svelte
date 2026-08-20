@@ -10,7 +10,7 @@
 		return pathname?.match(/\/[^/]*/)?.[0] ?? '/';
 	}
 
-	const order = ['/', '/projects', '/music'];
+	const order = ['/', '/projects', '/research', '/music'];
 
 	onNavigate(navigation => {
 		if (!document.startViewTransition) return;
