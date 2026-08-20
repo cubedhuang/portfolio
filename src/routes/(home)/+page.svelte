@@ -19,11 +19,11 @@
 	<h1 class="header">Daniel Huang</h1>
 
 	<p class="mt-4 text-gray-400">
-		Hey! I'm <b>Daniel</b>, a frontend developer from
-		<b>Atlanta, Georgia</b>.
+		Hey! I'm <b>Daniel</b>, a software engineer and student of computer
+		science and linguistics at <b>Georgia Tech</b>.
 	</p>
 
-	<div class="mt-4 flex gap-6">
+	<div class="my-6 flex gap-6">
 		<SocialLink href="https://github.com/cubedhuang" name="GitHub">
 			<GitHub />
 		</SocialLink>
@@ -57,3 +57,9 @@
 	<DiscordInfo />
 	<SpotifyInfo />
 </main>
+
+<style lang="postcss">
+	b {
+		@apply text-gray-300;
+	}
+</style>

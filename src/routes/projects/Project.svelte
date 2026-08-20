@@ -10,7 +10,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 		class="grid sm:grid-cols-2 rounded-xl overflow-hidden
-			hv:scale-[1.02] transition duration-300"
+			hover:scale-[1.02] transition duration-300"
 	>
 		<div class="p-6 md:p-8 bg-gray-900 max-sm:row-start-2">
 			<h2 class="font-bold text-2xl">{name}</h2>

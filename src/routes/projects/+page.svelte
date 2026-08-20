@@ -8,7 +8,9 @@
 <main class="wrapper fade">
 	<h1 class="header">Projects</h1>
 
-	<p class="mt-4 mb-8 text-gray-400">Some of my projects.</p>
+	<p class="mt-4 mb-8 text-gray-400">
+		Personal projects I've built and maintain.
+	</p>
 
 	<Project
 		name="nimi.li"
@@ -17,24 +19,6 @@
 	>
 		Interactive dictionary for Toki Pona featuring word usage and frequency
 		data from the community.
-	</Project>
-
-	<Project
-		name="debating.live"
-		href="https://debating.live"
-		src="/images/projects/debating.png"
-	>
-		Real-time platform for timer sharing, speech tracking, and more for
-		timed debate formats.
-	</Project>
-
-	<Project
-		name="Pseudocode Interpreter"
-		href="https://board.dan.onl"
-		src="/images/projects/pseudocode.png"
-	>
-		An interpreter for the specified pseudocode language in AP Computer
-		Science Principles.
 	</Project>
 
 	<Project
@@ -47,11 +31,21 @@
 	</Project>
 
 	<Project
-		name="Battleship"
-		href="https://battleship.dan.onl"
-		src="/images/projects/battleship.png"
+		name="Pseudocode Interpreter"
+		href="https://board.dan.onl"
+		src="/images/projects/pseudocode.png"
 	>
-		A simple Battleship interface with computer adversaries to play online.
+		An interpreter for the specified pseudocode language in AP Computer
+		Science Principles.
+	</Project>
+
+	<Project
+		name="debating.live"
+		href="https://debating.live"
+		src="/images/projects/debating.png"
+	>
+		Real-time platform for timer sharing, speech tracking, and more for
+		timed debate formats.
 	</Project>
 
 	<Project
@@ -61,6 +55,14 @@
 	>
 		An tool allowing bot developers to interactively generate code embeds in
 		various languages.
+	</Project>
+
+	<Project
+		name="Battleship"
+		href="https://battleship.dan.onl"
+		src="/images/projects/battleship.png"
+	>
+		A simple Battleship interface with computer adversaries to play online.
 	</Project>
 
 	<Project
@@ -77,7 +79,7 @@
 		href="https://cubedhuang.com"
 		src="/images/projects/cubedhuang.jpg"
 	>
-		A collection of many small experiments and projects I've worked on over
-		the years.
+		A collection of smaller experiments and projects I've worked on over the
+		years.
 	</Project>
 </main>

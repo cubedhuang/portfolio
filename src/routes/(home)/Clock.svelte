@@ -22,7 +22,7 @@
 	$: isDay = $now.getUTCHours() - 4 >= 6 && $now.getUTCHours() - 4 < 18;
 </script>
 
-<p class="mt-8 flex text-sm gap-2 items-center text-white">
+<p class="mt-2 flex text-sm gap-2 items-center text-white">
 	{#if isDay}
 		<Sun />
 	{:else}

@@ -39,6 +39,7 @@
 	<ul class="flex flex-wrap gap-x-12 gap-y-2">
 		<NavLink href="/">Home</NavLink>
 		<NavLink href="/projects">Projects</NavLink>
+		<NavLink href="/research">Research</NavLink>
 		<NavLink href="/music">Music</NavLink>
 	</ul>
 </nav>
