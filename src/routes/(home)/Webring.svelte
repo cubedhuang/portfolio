@@ -5,7 +5,7 @@
 
 <div class="mt-4 flex gap-2">
 	<a
-		class="h-12 w-12 bg-slate-800 rounded-full grid place-items-center hover:bg-slate-700 transition"
+		class="h-12 w-12 bg-slate-900 rounded-full grid place-items-center hover:bg-slate-800 transition"
 		href="https://kiyuri.ca"
 		rel="external"
 		aria-label="previous in webring"
@@ -35,7 +35,7 @@
 		Bay Leaf Webring
 	</div>
 	<a
-		class="h-12 w-12 bg-slate-800 rounded-full grid place-items-center hover:bg-slate-700 transition"
+		class="h-12 w-12 bg-slate-900 rounded-full grid place-items-center hover:bg-slate-800 transition"
 		href="https://julianlbauer.com"
 		rel="external"
 		aria-label="next in webring"
