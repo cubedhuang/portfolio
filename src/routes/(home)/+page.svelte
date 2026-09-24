@@ -4,6 +4,7 @@
 	import SocialLink from './SocialLink.svelte';
 	import SpotifyInfo from './SpotifyInfo.svelte';
 	import Weather from './Weather.svelte';
+	import Webring from './Webring.svelte';
 
 	import GitHub from '$lib/components/icons/GitHub.svelte';
 	import Envelope from '$lib/components/icons/Envelope.svelte';
@@ -56,6 +57,8 @@
 
 	<DiscordInfo />
 	<SpotifyInfo />
+
+	<Webring />
 </main>
 
 <style lang="postcss">
