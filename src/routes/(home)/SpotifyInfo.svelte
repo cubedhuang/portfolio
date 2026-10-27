@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { NowPlayingResponse } from '$lib/types';
-	import { fastNow } from '$lib/stores';
+	import type { NowPlayingResponse } from '#lib/types.ts';
+	import { fastNow } from '#lib/stores.ts';
 
-	import MusicalNote from '$lib/components/icons/MusicalNote.svelte';
-	import Pause from '$lib/components/icons/Pause.svelte';
-	import Play from '$lib/components/icons/Play.svelte';
+	import MusicalNote from '#lib/components/icons/MusicalNote.svelte';
+	import Pause from '#lib/components/icons/Pause.svelte';
+	import Play from '#lib/components/icons/Play.svelte';
 
 	let data: NowPlayingResponse | undefined;
 	let lastFetched = 0;
@@ -145,8 +145,8 @@
 <style lang="postcss">
 	.progress {
 		background: conic-gradient(
-			theme('colors.gray.700') calc(var(--progress) * 100%),
-			theme('colors.gray.800') 0
+			var(--color-gray-700) calc(var(--progress) * 100%),
+			var(--color-gray-800) 0
 		);
 	}
 </style>

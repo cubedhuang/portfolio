@@ -6,12 +6,12 @@
 	import Weather from './Weather.svelte';
 	import Webring from './Webring.svelte';
 
-	import GitHub from '$lib/components/icons/GitHub.svelte';
-	import Envelope from '$lib/components/icons/Envelope.svelte';
-	import Linkedin from '$lib/components/icons/Linkedin.svelte';
-	import Spotify from '$lib/components/icons/Spotify.svelte';
-	import Twitter from '$lib/components/icons/Twitter.svelte';
-	import Meta from '$lib/components/Meta.svelte';
+	import GitHub from '#lib/components/icons/GitHub.svelte';
+	import Envelope from '#lib/components/icons/Envelope.svelte';
+	import Linkedin from '#lib/components/icons/Linkedin.svelte';
+	import Spotify from '#lib/components/icons/Spotify.svelte';
+	import Twitter from '#lib/components/icons/Twitter.svelte';
+	import Meta from '#lib/components/Meta.svelte';
 </script>
 
 <Meta title="Daniel" description="My portfolio and personal website." />
@@ -62,6 +62,8 @@
 </main>
 
 <style lang="postcss">
+	@reference '../../app.css';
+
 	b {
 		@apply text-gray-300;
 	}

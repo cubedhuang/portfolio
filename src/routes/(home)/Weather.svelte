@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { WeatherResponse } from '$lib/types';
+	import type { WeatherResponse } from '#lib/types.ts';
 
-	import Cloud from '$lib/components/icons/Cloud.svelte';
+	import Cloud from '#lib/components/icons/Cloud.svelte';
 
 	let data: WeatherResponse | undefined;
 
@@ -44,6 +44,8 @@
 </p>
 
 <style lang="postcss">
+	@reference '../../app.css';
+
 	b {
 		@apply font-semibold;
 	}

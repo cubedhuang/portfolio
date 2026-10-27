@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.postcss';
+	import '../app.css';
 
 	import { onNavigate } from '$app/navigation';
 
@@ -63,13 +63,13 @@
 
 	@keyframes slide-in {
 		from {
-			transform: translateX(calc(-1 * theme(width.8) * var(--direction)));
+			transform: translateX(calc(-8 * var(--spacing) * var(--direction)));
 		}
 	}
 
 	@keyframes slide-out {
 		to {
-			transform: translateX(calc(theme(width.8) * var(--direction)));
+			transform: translateX(calc(8 * var(--spacing) * var(--direction)));
 		}
 	}
 

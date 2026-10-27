@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import Meta from '$lib/components/Meta.svelte';
+	import { browser } from '$app/env';
+	import Meta from '#lib/components/Meta.svelte';
 
-	import type { SpotifyTimeRange, TopTracksResponse } from '$lib/types';
+	import type { SpotifyTimeRange, TopTracksResponse } from '#lib/types.ts';
 
 	const options: {
 		name: string;
@@ -92,7 +92,7 @@
 						class="w-full h-full rounded-xl bg-gray-800 transition duration-300
 								group-hv:brightness-50 group-hv:scale-[1.02]"
 						aria-label="Album Art"
-					/>
+					></object>
 
 					<div
 						class="z-20 absolute inset-4 flex flex-col justify-end transition duration-300

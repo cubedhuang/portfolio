@@ -1,13 +1,13 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { json } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-import type { NowPlayingResponse } from '$lib/types';
-import { getSpotifyAccessToken } from '$lib/server/spotify.js';
+import { SPOTIFY_CLIENT_ID } from '$app/env/private';
+import type { NowPlayingResponse } from '#lib/types.ts';
+import { getSpotifyAccessToken } from '#lib/server/spotify.js';
 
 export async function GET({ fetch, platform, setHeaders }) {
 	const accessToken = await getSpotifyAccessToken({ fetch, platform });
 
-	const api = SpotifyApi.withAccessToken(env.SPOTIFY_CLIENT_ID, accessToken, {
+	const api = SpotifyApi.withAccessToken(SPOTIFY_CLIENT_ID, accessToken, {
 		fetch
 	});
 

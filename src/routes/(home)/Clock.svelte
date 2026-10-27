@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { now } from '$lib/stores';
+	import { now } from '#lib/stores.ts';
 
-	import Sun from '$lib/components/icons/Sun.svelte';
-	import Moon from '$lib/components/icons/Moon.svelte';
+	import Sun from '#lib/components/icons/Sun.svelte';
+	import Moon from '#lib/components/icons/Moon.svelte';
 
 	const df = new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',

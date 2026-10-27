@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import type { Snippet } from 'svelte';
 
-	export let href: string;
+	import { page } from '$app/state';
 
-	$: active = href === $page.url.pathname;
+	let { href, children }: { href: string; children: Snippet } = $props();
+
+	let active = $derived(href === page.url.pathname);
 </script>
 
 <li>
 	<a {href} class="transition {active ? 'text-white' : ''}">
-		<slot />
+		{@render children()}
 	</a>
 </li>

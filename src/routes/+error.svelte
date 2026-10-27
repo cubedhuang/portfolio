@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 </script>
 
 <main class="wrapper fade">
 	<h1 class="header">
-		{$page.status} &ndash;
-		{$page.error?.message ?? 'Unknown error'}
+		{page.status} &ndash;
+		{page.error?.message ?? 'Unknown error'}
 	</h1>
 
 	<p class="mt-4 text-gray-400">

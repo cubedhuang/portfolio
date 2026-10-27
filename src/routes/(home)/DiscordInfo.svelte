@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useLanyard } from 'sk-lanyard';
 
-	import Discord from '$lib/components/icons/Discord.svelte';
+	import Discord from '#lib/components/icons/Discord.svelte';
 
 	const discordId = '299707523370319883';
 	const lanyard = useLanyard({
@@ -35,7 +35,7 @@
 			<span
 				class="z-10 absolute w-4 h-4 bottom-1 right-1 rounded-full ring-4 ring-gray-900
 					{statusColors[$lanyard.discord_status]}"
-			/>
+			></span>
 		{:else}
 			<div
 				class="w-20 h-20 rounded-full bg-gray-800 text-gray-400 grid place-items-center"

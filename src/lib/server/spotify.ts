@@ -1,5 +1,9 @@
 import type { AccessToken } from '@spotify/web-api-ts-sdk';
-import { env } from '$env/dynamic/private';
+import {
+	SPOTIFY_CLIENT_ID,
+	SPOTIFY_CLIENT_SECRET,
+	SPOTIFY_REFRESH_TOKEN
+} from '$app/env/private';
 
 type AccessTokenResponse = {
 	access_token: string;
@@ -57,12 +61,12 @@ export async function getSpotifyAccessToken({
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 					Authorization: `Basic ${btoa(
-						`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`
+						`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`
 					)}`
 				},
 				body: new URLSearchParams({
 					grant_type: 'refresh_token',
-					refresh_token: env.SPOTIFY_REFRESH_TOKEN
+					refresh_token: SPOTIFY_REFRESH_TOKEN
 				})
 			}
 		).then(res => res.json());
@@ -75,13 +79,13 @@ export async function getSpotifyAccessToken({
 
 		accessToken = {
 			...response,
-			refresh_token: env.SPOTIFY_REFRESH_TOKEN
+			refresh_token: SPOTIFY_REFRESH_TOKEN
 		};
 	} else {
 		accessToken = JSON.parse(accessTokenRaw);
 
 		accessToken.expires_in = (expirationTime - Date.now()) / 1000;
-		accessToken.refresh_token = env.SPOTIFY_REFRESH_TOKEN;
+		accessToken.refresh_token = SPOTIFY_REFRESH_TOKEN;
 	}
 
 	return accessToken;

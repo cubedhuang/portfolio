@@ -1,6 +1,6 @@
-import { env } from '$env/dynamic/private';
-import { getSpotifyAccessToken } from '$lib/server/spotify';
-import type { SpotifyTimeRange } from '$lib/types';
+import { SPOTIFY_CLIENT_ID } from '$app/env/private';
+import { getSpotifyAccessToken } from '#lib/server/spotify.ts';
+import type { SpotifyTimeRange } from '#lib/types.ts';
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { error, json } from '@sveltejs/kit';
 
@@ -13,7 +13,7 @@ export async function GET({ fetch, platform, setHeaders, url }) {
 
 	const accessToken = await getSpotifyAccessToken({ fetch, platform });
 
-	const api = SpotifyApi.withAccessToken(env.SPOTIFY_CLIENT_ID, accessToken, {
+	const api = SpotifyApi.withAccessToken(SPOTIFY_CLIENT_ID, accessToken, {
 		fetch
 	});
 

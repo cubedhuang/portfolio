@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Meta from '$lib/components/Meta.svelte';
+	import Meta from '#lib/components/Meta.svelte';
 	import Research from './Research.svelte';
 </script>
 

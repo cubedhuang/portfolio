@@ -1,6 +1,6 @@
 <script>
-	import ArrowLeft from '$lib/components/icons/ArrowLeft.svelte';
-	import ArrowRight from '$lib/components/icons/ArrowRight.svelte';
+	import ArrowLeft from '#lib/components/icons/ArrowLeft.svelte';
+	import ArrowRight from '#lib/components/icons/ArrowRight.svelte';
 </script>
 
 <div class="mt-4 flex gap-2">
