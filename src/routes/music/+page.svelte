@@ -54,7 +54,7 @@
 		</p>
 
 		<div class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-gray-400">
-			{#each options as { name, value }}
+			{#each options as { name, value } (value)}
 				<label
 					class="transition cursor-pointer
 						{selectedRange === value ? 'text-white' : ''}"
@@ -76,13 +76,13 @@
 		<div
 			class="fade fade-fast fade-delay mt-8 mx-auto max-w-screen-xl px-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 grid-flow-dense"
 		>
-			{#each currentRange ?? [] as track, i}
+			{#each currentRange ?? [] as track, i (track.id)}
 				{@const big = i % 10 === 0}
 
 				<a
 					href={track.external_urls.spotify}
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="external noopener noreferrer"
 					class="aspect-square relative group transition rounded-xl overflow-hidden
 						{big ? 'sm:col-span-2 sm:row-span-2' : ''}"
 				>
@@ -105,7 +105,7 @@
 							{track.name}
 						</p>
 
-						{#each track.artists as artist}
+						{#each track.artists as artist (artist.id)}
 							<p
 								class="text-xs sm:text-sm text-gray-200 !leading-tight"
 							>

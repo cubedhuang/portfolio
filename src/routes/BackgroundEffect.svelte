@@ -168,7 +168,7 @@
 	viewBox="0 0 {width ?? 0} {height ?? 0}"
 >
 	<defs>
-		{#each boids as boid, i}
+		{#each boids as boid, i (boid)}
 			<radialGradient
 				id="boidGradient{i}"
 				cx="50%"
@@ -205,7 +205,7 @@
 		</radialGradient>
 	</defs>
 
-	{#each boids as boid, i}
+	{#each boids as boid, i (boid)}
 		<circle
 			cx={boid.x}
 			cy={boid.y}

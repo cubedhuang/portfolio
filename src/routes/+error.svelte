@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 </script>
 
@@ -10,6 +11,6 @@
 
 	<p class="mt-4 text-gray-400">
 		Seems like this page doesn't exist. Let's go back
-		<a href="/" class="text-white">home</a>.
+		<a href={resolve('')} class="text-white">home</a>.
 	</p>
 </main>

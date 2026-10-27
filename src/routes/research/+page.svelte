@@ -21,7 +21,7 @@
 			<p class="text-sm text-gray-400">
 				2026 &middot; Coauthored with <a
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="external noopener noreferrer"
 					href="https://www.wuhongchen.com/"
 					class="text-white font-medium hover:underline"
 				>
@@ -53,7 +53,7 @@
 			<p class="text-sm text-gray-400">
 				2025 &middot; Coauthored with <a
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="external noopener noreferrer"
 					href="https://modlangs.gatech.edu/people/person/joohyouna"
 					class="text-white font-medium hover:underline"
 				>
@@ -65,7 +65,7 @@
 				We examine language variation in Toki Pona by developing a
 				<a
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="external noopener noreferrer"
 					href="https://nasin.nimi.li"
 					class="text-white font-medium hover:underline"
 				>

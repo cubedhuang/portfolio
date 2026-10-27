@@ -7,7 +7,7 @@
 	{href}
 	aria-label={name}
 	target="_blank"
-	rel="noopener noreferrer"
+	rel="external noopener noreferrer"
 	class="transition hover:text-gray-400"
 >
 	<slot />

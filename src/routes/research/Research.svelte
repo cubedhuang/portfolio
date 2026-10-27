@@ -10,7 +10,7 @@
 			<a
 				{href}
 				target="_blank"
-				rel="noopener noreferrer"
+				rel="external noopener noreferrer"
 				class="hover:text-gray-300 transition"
 			>
 				{name}

@@ -48,7 +48,7 @@ export async function getSpotifyAccessToken({
 }) {
 	const kv = makeKV(platform);
 
-	let accessTokenRaw = await kv.get('accessToken');
+	const accessTokenRaw = await kv.get('accessToken');
 	let accessToken: AccessToken;
 
 	const expirationTime = Number(await kv.get('expirationTime')) || 0;

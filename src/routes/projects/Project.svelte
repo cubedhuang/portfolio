@@ -8,7 +8,7 @@
 	<a
 		{href}
 		target="_blank"
-		rel="noopener noreferrer"
+		rel="external noopener noreferrer"
 		class="grid sm:grid-cols-2 rounded-xl overflow-hidden
 			hover:scale-[1.02] transition duration-300"
 	>
