@@ -74,7 +74,7 @@
 
 	{#key selectedRange}
 		<div
-			class="fade fade-fast fade-delay mt-8 mx-auto max-w-screen-xl px-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 grid-flow-dense"
+			class="fade fade-fast fade-delay mt-8 mx-auto max-w-7xl px-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 grid-flow-dense"
 		>
 			{#each currentRange ?? [] as track, i (track.id)}
 				{@const big = i % 10 === 0}
@@ -100,14 +100,14 @@
 							{big ? 'sm:scale-[0.975]' : ''}"
 					>
 						<p
-							class="font-bold sm:text-xl line-clamp-3 !leading-tight mb-1"
+							class="font-bold sm:text-xl line-clamp-3 leading-tight! mb-1"
 						>
 							{track.name}
 						</p>
 
 						{#each track.artists as artist (artist.id)}
 							<p
-								class="text-xs sm:text-sm text-gray-200 !leading-tight"
+								class="text-xs sm:text-sm text-gray-200 leading-tight!"
 							>
 								{artist.name}
 							</p>

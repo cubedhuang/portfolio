@@ -161,7 +161,7 @@
 	}}
 />
 
-<div aria-hidden="true" class="h-[100lvh] fixed" bind:this={refDiv}></div>
+<div aria-hidden="true" class="h-lvh fixed" bind:this={refDiv}></div>
 
 <svg
 	class="w-screen h-screen fixed -z-10 top-0 left-0 pointer-events-none"
