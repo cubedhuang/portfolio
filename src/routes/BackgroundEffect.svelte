@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { spring } from 'svelte/motion';
+	import { Spring } from 'svelte/motion';
 
-	let refDiv: HTMLDivElement;
+	let refDiv = $state<HTMLDivElement>();
 
-	let width: number;
-	let height: number;
+	let width = $state(0);
+	let height = $state(0);
 
 	class Boid {
 		#r: number;
 
-		x: number;
-		y: number;
+		x: number = $state(0);
+		y: number = $state(0);
 		vx: number;
 		vy: number;
 		hue: number;
@@ -31,44 +31,59 @@
 		}
 	}
 
-	let boids: Boid[] = [];
+	let boids: Boid[] = $state([]);
 
 	function resize() {
-		const dw = window.innerWidth / width;
-		const dh = refDiv.clientHeight / height;
+		if (!refDiv) return;
 
-		for (const boid of boids) {
-			boid.x *= dw;
-			boid.y *= dh;
+		const newWidth = window.innerWidth;
+		const newHeight = refDiv.clientHeight;
+
+		if (width > 0 && height > 0) {
+			for (const boid of boids) {
+				boid.x *= newWidth / width;
+				boid.y *= newHeight / height;
+			}
 		}
 
-		width = window.innerWidth;
-		height = refDiv.clientHeight;
+		width = newWidth;
+		height = newHeight;
 
 		const amount = 20;
 
-		if (boids.length < amount) {
-			while (boids.length < amount) {
-				boids.push(new Boid());
-			}
-		} else if (boids.length > amount) {
-			while (boids.length > amount) {
-				boids.pop();
-			}
+		while (boids.length < amount) {
+			boids.push(new Boid());
 		}
+		boids.length = amount;
 	}
 
-	const mousePosition = spring(
+	const mousePosition = new Spring(
 		{ x: 0, y: 0 },
 		{
 			stiffness: 0.1,
 			damping: 0.3
 		}
 	);
-	const mouseStrength = spring(0);
-	const mousePressed = spring(0);
+	const mouseStrength = new Spring(0);
+	const mousePressed = new Spring(0);
 
-	function update() {
+	let mouseActivity = 0;
+
+	function mouseMove(x: number, y: number) {
+		mousePosition.set({ x, y }, { instant: mouseStrength.current < 0.01 });
+		mouseActivity = 1;
+	}
+
+	function mouseUp() {
+		mousePressed.target = 0;
+	}
+
+	function mouseLeave() {
+		mouseUp();
+		mouseActivity = 0;
+	}
+
+	function update(dt: number) {
 		for (const boid of boids) {
 			boid.x += boid.vx;
 			boid.y += boid.vy;
@@ -102,70 +117,60 @@
 			boid.vy *= 0.99;
 		}
 
-		if ($mousePressed < 0.01) {
-			$mouseStrength = $mouseStrength * 0.9;
+		if (mousePressed.target === 1) {
+			mouseActivity = 1;
 		} else {
-			$mouseStrength = $mouseStrength * 0.9 + 0.1;
+			mouseActivity *= 0.9 ** (dt / (1000 / 60));
 		}
 
-		boids = boids;
+		mouseStrength.target = mouseActivity < 0.01 ? 0 : mouseActivity;
 	}
 
 	let animationFrameRequest: number;
+	let lastTime: number | undefined;
 
-	function loop() {
-		update();
+	function loop(time: number) {
+		const dt = Math.min(time - (lastTime ?? time), 100);
+		update(dt);
+		lastTime = time;
 
 		animationFrameRequest = requestAnimationFrame(loop);
 	}
 
 	onMount(() => {
 		resize();
-		loop();
+		animationFrameRequest = requestAnimationFrame(loop);
 
 		return () => cancelAnimationFrame(animationFrameRequest);
 	});
 </script>
 
 <svelte:window
-	on:resize={resize}
-	on:mousemove={e => {
-		$mousePosition = { x: e.clientX, y: e.clientY };
-		$mouseStrength = 1;
+	onresize={resize}
+	onmousemove={e => mouseMove(e.clientX, e.clientY)}
+	ontouchmove={e => mouseMove(e.touches[0].clientX, e.touches[0].clientY)}
+	onmousedown={() => {
+		mousePressed.target = 1;
 	}}
-	on:touchmove={e => {
-		$mousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-		$mouseStrength = 1;
+	ontouchstart={e => {
+		mouseMove(e.touches[0].clientX, e.touches[0].clientY);
+		mousePressed.target = 1;
 	}}
-	on:mousedown={() => {
-		$mousePressed = 1;
+	onmouseup={mouseUp}
+	ontouchend={e => {
+		if (e.touches.length === 0) mouseUp();
 	}}
-	on:touchstart={() => {
-		$mousePressed = 1;
-		$mouseStrength = 1;
-	}}
-	on:mouseup={() => {
-		$mousePressed = 0;
-	}}
-	on:touchend={() => {
-		$mousePressed = 0;
-	}}
-	on:mouseleave={() => {
-		$mousePressed = 0;
-	}}
-	on:touchcancel={() => {
-		$mousePressed = 0;
-	}}
-	on:blur={() => {
-		$mousePressed = 0;
-	}}
+	ontouchcancel={mouseLeave}
+	onblur={mouseLeave}
 />
+
+<svelte:document onmouseleave={mouseLeave} />
 
 <div aria-hidden="true" class="h-lvh fixed" bind:this={refDiv}></div>
 
 <svg
 	class="w-screen h-screen fixed -z-10 top-0 left-0 pointer-events-none"
-	viewBox="0 0 {width ?? 0} {height ?? 0}"
+	viewBox="0 0 {width} {height}"
 >
 	<defs>
 		{#each boids as boid, i (boid)}
@@ -198,8 +203,8 @@
 		>
 			<stop
 				offset="0%"
-				stop-color="hsla(270, 100%, 50%, {$mouseStrength *
-					($mousePressed * 0.125 + 0.125)})"
+				stop-color="hsla(270, 100%, 50%, {mouseStrength.current *
+					(mousePressed.current * 0.125 + 0.125)})"
 			/>
 			<stop offset="100%" stop-color="hsla(270, 100%, 50%, 0)" />
 		</radialGradient>
@@ -215,9 +220,9 @@
 	{/each}
 
 	<circle
-		cx={$mousePosition.x}
-		cy={$mousePosition.y}
-		r={$mouseStrength * 100}
+		cx={mousePosition.current.x}
+		cy={mousePosition.current.y}
+		r={mouseStrength.current * 100}
 		fill="url(#mouseGradient)"
 	/>
 </svg>
