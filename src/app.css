@@ -94,8 +94,7 @@
 		--fade-step: 40ms;
 	}
 
-	.fade > *,
-	nav {
+	.fade > * {
 		animation-name: fade-in;
 		animation-duration: 700ms;
 		animation-fill-mode: backwards;
@@ -103,7 +102,11 @@
 	}
 
 	nav {
-		animation-delay: 700ms;
+		animation-name: appear;
+		animation-duration: 700ms;
+		animation-fill-mode: backwards;
+		animation-timing-function: cubic-bezier(0.37, 0.69, 0.39, 0.99);
+		animation-delay: 1000ms;
 	}
 
 	.fade-delay {
@@ -120,6 +123,12 @@
 		from {
 			opacity: 0;
 			transform: translateY(0.5rem);
+		}
+	}
+
+	@keyframes appear {
+		from {
+			opacity: 0;
 		}
 	}
 }
