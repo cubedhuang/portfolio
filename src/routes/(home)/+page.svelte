@@ -127,6 +127,6 @@
 	}
 
 	a {
-		@apply text-accent underline decoration-accent/30 underline-offset-2 transition hv:decoration-accent;
+		@apply font-medium text-accent underline decoration-current/30 underline-offset-2 transition hover:decoration-current;
 	}
 </style>

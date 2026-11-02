@@ -84,7 +84,7 @@
 					href={data.track.external_urls.spotify}
 					target="_blank"
 					rel="external noopener noreferrer"
-					class="mr-1 text-foreground font-semibold underline decoration-current/30 underline-offset-2 transition hv:decoration-current"
+					class="mr-1 text-foreground font-semibold underline decoration-current/30 underline-offset-2 transition hover:decoration-accent"
 				>
 					{data.track.name}
 				</a>
@@ -97,7 +97,7 @@
 						href={artist.external_urls.spotify}
 						target="_blank"
 						rel="external noopener noreferrer"
-						class="underline decoration-current/30 underline-offset-2 transition hv:decoration-current"
+						class="underline decoration-current/30 underline-offset-2 transition hover:decoration-accent"
 					>
 						{artist.name}</a
 					>
@@ -145,7 +145,7 @@
 <style lang="postcss">
 	.progress {
 		background: conic-gradient(
-			var(--color-progress) calc(var(--progress) * 100%),
+			var(--color-accent) calc(var(--progress) * 100%),
 			var(--color-surface-raised) 0
 		);
 	}

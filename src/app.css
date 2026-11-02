@@ -15,10 +15,7 @@
 
 	--color-foreground: var(--color-white);
 	--color-muted: var(--color-zinc-300);
-	--color-accent: var(--color-yellow-300);
-
-	/* spotify */
-	--color-progress: var(--color-zinc-600);
+	--color-accent: var(--color-fuchsia-300);
 
 	/* discord */
 	--color-status-online: var(--color-emerald-500);
@@ -51,9 +48,15 @@
 		scrollbar-width: thin;
 	}
 
+	* {
+		@apply outline-accent outline-offset-4;
+	}
 	*:focus-visible {
-		outline: 2px solid var(--color-foreground);
-		outline-offset: 4px;
+		@apply outline-2;
+	}
+
+	::selection {
+		@apply bg-accent text-background;
 	}
 }
 

@@ -21,7 +21,6 @@
 					target="_blank"
 					rel="external noopener noreferrer"
 					href="https://www.wuhongchen.com/"
-					class="text-foreground font-medium hover:underline"
 				>
 					Dr. Hongchen Wu
 				</a>
@@ -53,7 +52,6 @@
 					target="_blank"
 					rel="external noopener noreferrer"
 					href="https://modlangs.gatech.edu/people/person/joohyouna"
-					class="text-foreground font-medium hover:underline"
 				>
 					Dr. Hyoun-A Joo
 				</a>
@@ -65,7 +63,6 @@
 					target="_blank"
 					rel="external noopener noreferrer"
 					href="https://nasin.nimi.li"
-					class="text-foreground font-medium hover:underline"
 				>
 					Toki Pona parser
 				</a> to analyze changes in syntactic positions of content words over
@@ -89,5 +86,9 @@
 
 	p:not(h1 + p) {
 		@apply text-muted text-sm;
+	}
+
+	a {
+		@apply text-foreground font-medium underline decoration-current/30 underline-offset-2 transition hover:decoration-accent;
 	}
 </style>

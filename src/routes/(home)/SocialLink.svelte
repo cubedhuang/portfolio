@@ -8,7 +8,7 @@
 	aria-label={name}
 	target="_blank"
 	rel="external noopener noreferrer"
-	class="transition hover:text-muted"
+	class="transition hover:text-accent"
 >
 	<slot />
 </a>

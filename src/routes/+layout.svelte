@@ -38,7 +38,7 @@
 	const { children }: { children: Snippet } = $props();
 </script>
 
-<BackgroundEffect />
+<!-- <BackgroundEffect /> -->
 
 <nav class="wrapper mt-20 md:mt-24 text-muted">
 	<ul class="flex flex-wrap gap-x-6 sm:gap-x-12 gap-y-2">
@@ -47,7 +47,9 @@
 			<li>
 				<a
 					href={resolve(href)}
-					class="transition {active ? 'text-foreground active' : ''}"
+					class="transition font-medium {active
+						? 'text-accent active'
+						: ''}"
 				>
 					{name}
 				</a>

@@ -11,7 +11,7 @@
 				{href}
 				target="_blank"
 				rel="external noopener noreferrer"
-				class="hover:text-muted transition"
+				class="underline decoration-transparent underline-offset-2 transition hover:decoration-accent"
 			>
 				{name}
 			</a>
