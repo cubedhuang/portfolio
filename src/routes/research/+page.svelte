@@ -9,7 +9,7 @@
 	<div class="wrapper fade">
 		<h1 class="header">Research</h1>
 
-		<p class="mt-4 mb-6 text-base">My research work.</p>
+		<p class="mt-4 mb-6 text-gray-300">My research work.</p>
 
 		<Research
 			name="Examining the Limits of Word2Vec with Toki Pona"
@@ -87,7 +87,7 @@
 <style lang="postcss">
 	@reference "../../app.css";
 
-	p {
+	p:not(h1 + p) {
 		@apply text-gray-300 text-sm;
 	}
 </style>
