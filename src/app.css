@@ -26,9 +26,8 @@
 	--color-status-dnd: var(--color-rose-400);
 	--color-status-offline: var(--color-zinc-600);
 
-	--color-scrollbar-track: var(--color-black);
+	--color-scrollbar-track: var(--color-background);
 	--color-scrollbar-thumb: var(--color-surface-raised);
-	--color-scrollbar-thumb-active: var(--color-zinc-700);
 }
 
 @custom-variant hf (&:hover, &:focus);
@@ -55,26 +54,6 @@
 	*:focus-visible {
 		outline: 2px solid var(--color-foreground);
 		outline-offset: 4px;
-	}
-
-	::-webkit-scrollbar {
-		width: 0.5rem;
-		height: 0.5rem;
-	}
-	::-webkit-scrollbar-track {
-		background: var(--color-scrollbar-track);
-	}
-	::-webkit-scrollbar-thumb {
-		background: var(--color-scrollbar-thumb);
-	}
-	::-webkit-scrollbar-button {
-		display: none;
-	}
-	::-webkit-scrollbar-corner {
-		display: none;
-	}
-	::-webkit-scrollbar-thumb:active {
-		background: var(--color-scrollbar-thumb-active);
 	}
 }
 
