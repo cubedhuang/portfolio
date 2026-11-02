@@ -5,7 +5,6 @@
 	import { onNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 
-	import BackgroundEffect from './BackgroundEffect.svelte';
 	import { page } from '$app/state';
 	import type { Path } from '$app/types';
 
@@ -37,8 +36,6 @@
 
 	const { children }: { children: Snippet } = $props();
 </script>
-
-<!-- <BackgroundEffect /> -->
 
 <nav class="wrapper mt-20 md:mt-24 text-muted">
 	<ul class="flex flex-wrap gap-x-6 sm:gap-x-12 gap-y-2">
