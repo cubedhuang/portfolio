@@ -115,7 +115,7 @@
 	@reference '../../app.css';
 
 	p {
-		@apply leading-[1.75] text-pretty text-muted;
+		@apply leading-relaxed sm:leading-[1.75] text-pretty text-muted;
 	}
 
 	p + p {
