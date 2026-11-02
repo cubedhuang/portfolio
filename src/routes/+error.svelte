@@ -9,8 +9,8 @@
 		{page.error?.message ?? 'Unknown error'}
 	</h1>
 
-	<p class="mt-4 text-gray-300">
+	<p class="mt-4 text-muted">
 		Seems like this page doesn't exist. Let's go back
-		<a href={resolve('')} class="text-white">home</a>.
+		<a href={resolve('')} class="text-foreground">home</a>.
 	</p>
 </main>

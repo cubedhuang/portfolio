@@ -40,14 +40,14 @@
 
 <BackgroundEffect />
 
-<nav class="wrapper mt-20 md:mt-24 text-gray-300">
+<nav class="wrapper mt-20 md:mt-24 text-muted">
 	<ul class="flex flex-wrap gap-x-6 sm:gap-x-12 gap-y-2">
 		{#snippet link(href: Path, name: string)}
 			{@const active = page.url.pathname === `/${href}`}
 			<li>
 				<a
 					href={resolve(href)}
-					class="transition {active ? 'text-white active' : ''}"
+					class="transition {active ? 'text-foreground active' : ''}"
 				>
 					{name}
 				</a>

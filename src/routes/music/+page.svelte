@@ -49,15 +49,15 @@
 	<div class="wrapper fade">
 		<h1 class="header">Music</h1>
 
-		<p class="mt-4 text-gray-300">
+		<p class="mt-4 text-muted">
 			Tracks I've listened to the most on Spotify.
 		</p>
 
-		<div class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-gray-300">
+		<div class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-muted">
 			{#each options as { name, value } (value)}
 				<label
 					class="transition cursor-pointer
-						{selectedRange === value ? 'text-white' : ''}"
+						{selectedRange === value ? 'text-foreground' : ''}"
 				>
 					<input
 						type="radio"
@@ -89,7 +89,7 @@
 					<object
 						data={track.album.images[0].url}
 						type="image/png"
-						class="w-full h-full rounded-xl bg-gray-800 transition duration-300
+						class="w-full h-full rounded-xl bg-surface-raised transition duration-300
 								group-hv:brightness-50 group-hv:scale-[1.02]"
 						aria-label="Album Art"
 					></object>
@@ -107,7 +107,7 @@
 
 						{#each track.artists as artist (artist.id)}
 							<p
-								class="text-xs sm:text-sm text-gray-200 leading-tight!"
+								class="text-xs sm:text-sm text-foreground leading-tight!"
 							>
 								{artist.name}
 							</p>
@@ -121,7 +121,7 @@
 
 <style lang="postcss">
 	label:has(:focus-visible) {
-		outline: 2px solid white;
+		outline: 2px solid var(--color-foreground);
 		outline-offset: 4px;
 	}
 </style>

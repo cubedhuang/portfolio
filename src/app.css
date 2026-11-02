@@ -8,6 +8,29 @@
 		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+@theme inline {
+	--color-background: var(--color-zinc-950);
+	--color-surface: var(--color-zinc-900);
+	--color-surface-raised: var(--color-zinc-800);
+
+	--color-foreground: var(--color-white);
+	--color-muted: var(--color-zinc-300);
+	--color-accent: var(--color-yellow-300);
+
+	/* spotify */
+	--color-progress: var(--color-zinc-700);
+
+	/* discord */
+	--color-status-online: var(--color-emerald-500);
+	--color-status-idle: var(--color-amber-400);
+	--color-status-dnd: var(--color-rose-400);
+	--color-status-offline: var(--color-zinc-600);
+
+	--color-scrollbar-track: var(--color-black);
+	--color-scrollbar-thumb: var(--color-surface-raised);
+	--color-scrollbar-thumb-active: var(--color-zinc-700);
+}
+
 @custom-variant hf (&:hover, &:focus);
 @custom-variant hv (&:hover, &:focus-visible);
 @custom-variant group-hf (.group:hover &, .group:focus &);
@@ -15,7 +38,7 @@
 
 @layer base {
 	html {
-		@apply bg-gray-950 text-white;
+		@apply bg-background text-foreground;
 
 		color-scheme: dark;
 	}
@@ -24,12 +47,13 @@
 		@apply min-h-screen overflow-x-hidden overflow-y-scroll;
 
 		-webkit-tap-highlight-color: transparent;
-		scrollbar-color: var(--color-gray-800) #000;
+		scrollbar-color: var(--color-scrollbar-thumb)
+			var(--color-scrollbar-track);
 		scrollbar-width: thin;
 	}
 
 	*:focus-visible {
-		outline: 2px solid white;
+		outline: 2px solid var(--color-foreground);
 		outline-offset: 4px;
 	}
 
@@ -38,10 +62,10 @@
 		height: 0.5rem;
 	}
 	::-webkit-scrollbar-track {
-		background: #000;
+		background: var(--color-scrollbar-track);
 	}
 	::-webkit-scrollbar-thumb {
-		background: var(--color-gray-800);
+		background: var(--color-scrollbar-thumb);
 	}
 	::-webkit-scrollbar-button {
 		display: none;
@@ -50,7 +74,7 @@
 		display: none;
 	}
 	::-webkit-scrollbar-thumb:active {
-		background: var(--color-gray-700);
+		background: var(--color-scrollbar-thumb-active);
 	}
 }
 

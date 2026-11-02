@@ -115,7 +115,7 @@
 	@reference '../../app.css';
 
 	p {
-		@apply leading-[1.75] text-pretty text-gray-300;
+		@apply leading-[1.75] text-pretty text-muted;
 	}
 
 	p + p {
@@ -123,10 +123,10 @@
 	}
 
 	b {
-		@apply font-semibold text-white;
+		@apply font-semibold text-foreground;
 	}
 
 	a {
-		@apply text-violet-300 underline decoration-violet-300/30 underline-offset-2 transition hv:decoration-violet-300;
+		@apply text-accent underline decoration-accent/30 underline-offset-2 transition hv:decoration-accent;
 	}
 </style>

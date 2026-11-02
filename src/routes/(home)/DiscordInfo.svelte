@@ -10,35 +10,35 @@
 	});
 
 	const statusColors: Record<string, string> = {
-		online: 'bg-emerald-500',
-		idle: 'bg-amber-400',
-		dnd: 'bg-rose-400',
-		offline: 'bg-gray-600'
+		online: 'bg-status-online',
+		idle: 'bg-status-idle',
+		dnd: 'bg-status-dnd',
+		offline: 'bg-status-offline'
 	};
 
 	$: customStatus = $lanyard?.activities.find(a => a.type === 4);
 </script>
 
-<div class="mt-8 flex rounded-full items-center bg-gray-900">
+<div class="mt-8 flex rounded-full items-center bg-surface">
 	<div class="relative w-20 h-20 shrink-0 rounded-full">
 		{#if $lanyard}
 			<object
 				data="https://cdn.discordapp.com/avatars/{discordId}/{$lanyard
 					.discord_user.avatar}"
 				type="image/png"
-				class="w-20 h-20 rounded-full bg-gray-800 text-gray-300 grid place-items-center"
+				class="w-20 h-20 rounded-full bg-surface-raised text-muted grid place-items-center"
 				aria-label="Discord Avatar"
 			>
 				<Discord />
 			</object>
 
 			<span
-				class="z-10 absolute w-4 h-4 bottom-1 right-1 rounded-full ring-4 ring-gray-900
+				class="z-10 absolute w-4 h-4 bottom-1 right-1 rounded-full ring-4 ring-surface
 					{statusColors[$lanyard.discord_status]}"
 			></span>
 		{:else}
 			<div
-				class="w-20 h-20 rounded-full bg-gray-800 text-gray-300 grid place-items-center"
+				class="w-20 h-20 rounded-full bg-surface-raised text-muted grid place-items-center"
 			>
 				<Discord />
 			</div>
@@ -46,9 +46,9 @@
 	</div>
 
 	<div class="ml-4 py-2 pr-6">
-		<p class="line-clamp-1 break-all text-gray-300">
+		<p class="line-clamp-1 break-all text-muted">
 			{#if $lanyard}
-				<span class="font-semibold text-white">
+				<span class="font-semibold text-foreground">
 					{$lanyard.discord_user.display_name}
 				</span>
 

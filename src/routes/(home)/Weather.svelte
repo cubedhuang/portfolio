@@ -27,7 +27,7 @@
 	};
 </script>
 
-<p class="mt-2 flex text-sm gap-2 items-center text-white">
+<p class="mt-2 flex text-sm gap-2 items-center text-foreground">
 	<Cloud />
 
 	<span>

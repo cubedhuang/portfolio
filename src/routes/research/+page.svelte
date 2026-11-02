@@ -9,7 +9,7 @@
 	<div class="wrapper fade">
 		<h1 class="header">Research</h1>
 
-		<p class="mt-4 mb-6 text-gray-300">My research.</p>
+		<p class="mt-4 mb-6 text-muted">My research.</p>
 
 		<Research
 			name="Examining the Limits of Word2Vec with Toki Pona"
@@ -21,7 +21,7 @@
 					target="_blank"
 					rel="external noopener noreferrer"
 					href="https://www.wuhongchen.com/"
-					class="text-white font-medium hover:underline"
+					class="text-foreground font-medium hover:underline"
 				>
 					Dr. Hongchen Wu
 				</a>
@@ -53,7 +53,7 @@
 					target="_blank"
 					rel="external noopener noreferrer"
 					href="https://modlangs.gatech.edu/people/person/joohyouna"
-					class="text-white font-medium hover:underline"
+					class="text-foreground font-medium hover:underline"
 				>
 					Dr. Hyoun-A Joo
 				</a>
@@ -65,7 +65,7 @@
 					target="_blank"
 					rel="external noopener noreferrer"
 					href="https://nasin.nimi.li"
-					class="text-white font-medium hover:underline"
+					class="text-foreground font-medium hover:underline"
 				>
 					Toki Pona parser
 				</a> to analyze changes in syntactic positions of content words over
@@ -88,6 +88,6 @@
 	@reference "../../app.css";
 
 	p:not(h1 + p) {
-		@apply text-gray-300 text-sm;
+		@apply text-muted text-sm;
 	}
 </style>
