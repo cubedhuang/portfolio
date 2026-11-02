@@ -21,7 +21,7 @@
 	}
 
 	html {
-		@apply overflow-x-hidden overflow-y-scroll;
+		@apply min-h-screen overflow-x-hidden overflow-y-scroll;
 
 		-webkit-tap-highlight-color: transparent;
 		scrollbar-color: var(--color-gray-800) #000;
