@@ -56,8 +56,8 @@
 		<div class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-muted">
 			{#each options as { name, value } (value)}
 				<label
-					class="transition cursor-pointer
-						{selectedRange === value ? 'text-foreground' : ''}"
+					class="transition cursor-pointer font-medium
+						{selectedRange === value ? 'text-accent' : ''}"
 				>
 					<input
 						type="radio"
