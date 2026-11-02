@@ -11,7 +11,7 @@
 @theme inline {
 	--color-background: var(--color-zinc-950);
 	--color-surface: var(--color-zinc-900);
-	--color-surface-raised: var(--color-zinc-800);
+	--color-surface-raised: var(--color-zinc-700);
 
 	--color-foreground: var(--color-white);
 	--color-muted: var(--color-zinc-300);

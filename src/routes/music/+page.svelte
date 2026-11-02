@@ -89,7 +89,7 @@
 					<object
 						data={track.album.images[0].url}
 						type="image/png"
-						class="w-full h-full rounded-xl bg-surface-raised transition duration-300
+						class="w-full h-full rounded-xl bg-surface transition duration-300
 								group-hv:brightness-50 group-hv:scale-[1.02]"
 						aria-label="Album Art"
 					></object>
