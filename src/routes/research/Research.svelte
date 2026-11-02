@@ -24,7 +24,7 @@
 		<img
 			{src}
 			alt=""
-			class="absolute top-0 left-0 w-full h-full object-cover"
+			class="bg-surface-raised absolute top-0 left-0 w-full h-full object-cover"
 		/>
 	</div>
 </div>

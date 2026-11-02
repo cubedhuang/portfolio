@@ -84,13 +84,13 @@
 
 	@keyframes slide-in {
 		from {
-			transform: translateX(calc(-8 * var(--spacing) * var(--direction)));
+			transform: translateX(calc(-4 * var(--spacing) * var(--direction)));
 		}
 	}
 
 	@keyframes slide-out {
 		to {
-			transform: translateX(calc(8 * var(--spacing) * var(--direction)));
+			transform: translateX(calc(4 * var(--spacing) * var(--direction)));
 		}
 	}
 

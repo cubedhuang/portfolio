@@ -74,7 +74,7 @@
 
 	{#key selectedRange}
 		<div
-			class="fade fade-fast fade-delay mt-8 mx-auto max-w-7xl px-4 md:px-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 grid-flow-dense"
+			class="fade fade-delay mt-8 mx-auto max-w-7xl px-4 md:px-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 grid-flow-dense"
 		>
 			{#each currentRange ?? [] as track, i (track.id)}
 				{@const big = i % 10 === 0}

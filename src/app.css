@@ -39,6 +39,27 @@
 		color-scheme: dark;
 	}
 
+	body::before {
+		--grid-color: var(--color-zinc-700);
+		--grid-spacing: calc(var(--spacing) * 6);
+		--grid-dot-size: calc(var(--spacing) * 1/4);
+		content: '';
+		position: absolute;
+		inset-inline: 0;
+		inset-block-start: 0;
+		height: 100lvh;
+		z-index: -1;
+		pointer-events: none;
+		background-image: radial-gradient(
+			circle,
+			var(--grid-color) var(--grid-dot-size),
+			transparent calc(var(--grid-dot-size) + 0.5px)
+		);
+		background-size: var(--grid-spacing) var(--grid-spacing);
+		background-position: center top;
+		mask-image: linear-gradient(to bottom, black, transparent);
+	}
+
 	html {
 		@apply min-h-screen overflow-x-hidden overflow-y-scroll;
 
@@ -70,11 +91,7 @@
 	}
 
 	.fade {
-		--fade-step: 70ms;
-	}
-
-	.fade.fade-fast {
-		--fade-step: 50ms;
+		--fade-step: 40ms;
 	}
 
 	.fade > *,
@@ -86,11 +103,11 @@
 	}
 
 	nav {
-		animation-delay: 1000ms;
+		animation-delay: 700ms;
 	}
 
 	.fade-delay {
-		--fade-delay: 100ms;
+		--fade-delay: 50ms;
 	}
 
 	.fade > * {
@@ -102,7 +119,7 @@
 	@keyframes fade-in {
 		from {
 			opacity: 0;
-			transform: translateY(1rem);
+			transform: translateY(0.5rem);
 		}
 	}
 }
