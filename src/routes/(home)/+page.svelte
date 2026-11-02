@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+
 	import Clock from './Clock.svelte';
 	import DiscordInfo from './DiscordInfo.svelte';
 	import SocialLink from './SocialLink.svelte';
@@ -21,20 +23,55 @@
 
 	<p class="mt-6">
 		Hi! I'm <b>Daniel</b>, an undergraduate student studying computer
-		science and linguistics at the Georgia Institute of Technology.
-	</p>
-	<p>
-		I'm interested in programming languages, compilers, and systems as well
-		as computational corpus linguistics and theoretical syntax.
+		science and linguistics at the Georgia Institute of Technology. I'm
+		interested in programming languages, compilers, and systems, as well as
+		computational corpus linguistics and theoretical syntax.
 	</p>
 	<p>
 		At Georgia Tech, I develop teaching material and maintain
-		<a href="https://github.com/gt-cs2110">course software</a> as a Senior
-		Teaching Assistant for CS 2110 (Computer Organization and Programming)
-		and organize weekly meetings on various topics of interest with the
-		<a href="https://www.instagram.com/linguisticsgatech/">
+		<a
+			href="https://github.com/gt-cs2110"
+			rel="external noopener noreferrer"
+			target="_blank">course software</a
+		>
+		as a Senior Teaching Assistant for CS 2110, Computer Organization and Programming.
+		I also founded and run the
+		<a
+			href="https://www.instagram.com/linguisticsgatech/"
+			rel="external noopener noreferrer"
+			target="_blank"
+		>
 			Linguistics Club</a
-		>.
+		>, where we hold weekly meetings on various topics of interest.
+	</p>
+	<p>
+		I'm also an avid <a
+			href="https://tokipona.net"
+			rel="external noopener noreferrer"
+			target="_blank">tokiponist</a
+		>
+		and have created a
+		<a
+			href="https://nimi.li"
+			rel="external noopener noreferrer"
+			target="_blank">dictionary</a
+		>, an
+		<a
+			href="https://youtu.be/5phj5Ae80h8"
+			rel="external noopener noreferrer"
+			target="_blank">introductory video</a
+		>, and
+		<a
+			href="https://nasin.nimi.li"
+			rel="external noopener noreferrer"
+			target="_blank">corpus tools</a
+		>
+		for the language. I've presented my
+		<a href={resolve('research')}>research</a> at the Society for Computation
+		in Linguistics and the Emory Undergraduate Linguistics Conference.
+	</p>
+	<p>
+		<i>sina toki pona la o toki tawa mi a!</i>
 	</p>
 
 	<div class="my-6 flex gap-6">
@@ -78,7 +115,7 @@
 	@reference '../../app.css';
 
 	p {
-		@apply leading-relaxed text-pretty text-gray-300;
+		@apply leading-[1.75] text-pretty text-gray-300;
 	}
 
 	p + p {
