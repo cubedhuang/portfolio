@@ -2,67 +2,30 @@
 	import { onMount } from 'svelte';
 	import { Spring } from 'svelte/motion';
 
-	let refDiv = $state<HTMLDivElement>();
-
-	let width = $state(0);
-	let height = $state(0);
-
-	class Boid {
-		#r: number;
-
-		x: number = $state(0);
-		y: number = $state(0);
-		vx: number;
-		vy: number;
-		hue: number;
-
-		constructor() {
-			this.#r = Math.random() * 1 + 1;
-			this.x = Math.random() * (width + 2 * this.r) - this.r;
-			this.y = Math.random() * (height + 2 * this.r) - this.r;
-
-			this.vx = 0;
-			this.vy = 0;
-			this.hue = Math.random() * 60 + 260;
-		}
-
-		get r() {
-			return (this.#r * width * height * devicePixelRatio) / 8000;
-		}
+	// https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
+	function mulberry32(a: number) {
+		return function () {
+			let t = (a += 0x6d2b79f5);
+			t = Math.imul(t ^ (t >>> 15), t | 1);
+			t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+			return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+		};
 	}
 
-	let boids: Boid[] = $state([]);
+	const SEED = 2004;
+	const COUNT = 20;
 
-	function resize() {
-		if (!refDiv) return;
-
-		const newWidth = window.innerWidth;
-		const newHeight = refDiv.clientHeight;
-
-		if (width > 0 && height > 0) {
-			for (const boid of boids) {
-				boid.x *= newWidth / width;
-				boid.y *= newHeight / height;
-			}
-		}
-
-		width = newWidth;
-		height = newHeight;
-
-		const amount = 20;
-
-		while (boids.length < amount) {
-			boids.push(new Boid());
-		}
-		boids.length = amount;
-	}
+	const random = mulberry32(SEED);
+	const boids = Array.from({ length: COUNT }, () => ({
+		x: random() * 100,
+		y: random() * 100,
+		r: 25 + random() * 25,
+		hue: 270 + random() * 60
+	}));
 
 	const mousePosition = new Spring(
 		{ x: 0, y: 0 },
-		{
-			stiffness: 0.1,
-			damping: 0.3
-		}
+		{ stiffness: 0.05, damping: 0.3 }
 	);
 	const mouseStrength = new Spring(0);
 	const mousePressed = new Spring(0);
@@ -84,39 +47,6 @@
 	}
 
 	function update(dt: number) {
-		for (const boid of boids) {
-			boid.x += boid.vx;
-			boid.y += boid.vy;
-
-			if (boid.x < -boid.r) {
-				boid.x += width + 2 * boid.r;
-			} else if (boid.x > width + boid.r) {
-				boid.x -= width + 2 * boid.r;
-			}
-
-			if (boid.y < -boid.r) {
-				boid.y += height + 2 * boid.r;
-			} else if (boid.y > height + boid.r) {
-				boid.y -= height + 2 * boid.r;
-			}
-
-			for (const other of boids) {
-				if (boid === other) continue;
-
-				const dx = boid.x - other.x;
-				const dy = boid.y - other.y;
-				const dist = Math.hypot(dx, dy);
-
-				if (dist < 200) {
-					boid.vx += (dx / dist / dist) * 0.5;
-					boid.vy += (dy / dist / dist) * 0.5;
-				}
-			}
-
-			boid.vx *= 0.99;
-			boid.vy *= 0.99;
-		}
-
 		if (mousePressed.target === 1) {
 			mouseActivity = 1;
 		} else {
@@ -138,7 +68,6 @@
 	}
 
 	onMount(() => {
-		resize();
 		animationFrameRequest = requestAnimationFrame(loop);
 
 		return () => cancelAnimationFrame(animationFrameRequest);
@@ -146,7 +75,6 @@
 </script>
 
 <svelte:window
-	onresize={resize}
 	onmousemove={e => mouseMove(e.clientX, e.clientY)}
 	ontouchmove={e => mouseMove(e.touches[0].clientX, e.touches[0].clientY)}
 	onmousedown={() => {
@@ -166,22 +94,13 @@
 
 <svelte:document onmouseleave={mouseLeave} />
 
-<div aria-hidden="true" class="h-lvh fixed" bind:this={refDiv}></div>
-
 <svg
-	class="w-screen h-screen fixed -z-10 top-0 left-0 pointer-events-none"
-	viewBox="0 0 {width} {height}"
+	aria-hidden="true"
+	class="w-screen h-lvh fixed -z-10 top-0 left-0 pointer-events-none"
 >
 	<defs>
-		{#each boids as boid, i (boid)}
-			<radialGradient
-				id="boidGradient{i}"
-				cx="50%"
-				cy="50%"
-				r="50%"
-				fx="50%"
-				fy="50%"
-			>
+		{#each boids as boid, i (i)}
+			<radialGradient id="boidGradient{i}">
 				<stop
 					offset="0%"
 					stop-color="oklch(0.5 0.25 {boid.hue} / 0.1)"
@@ -193,14 +112,7 @@
 			</radialGradient>
 		{/each}
 
-		<radialGradient
-			id="mouseGradient"
-			cx="50%"
-			cy="50%"
-			r="50%"
-			fx="50%"
-			fy="50%"
-		>
+		<radialGradient id="mouseGradient">
 			<stop
 				offset="0%"
 				stop-color="oklch(0.5 0.25 290 / {mouseStrength.current *
@@ -210,11 +122,11 @@
 		</radialGradient>
 	</defs>
 
-	{#each boids as boid, i (boid)}
+	{#each boids as boid, i (i)}
 		<circle
-			cx={boid.x}
-			cy={boid.y}
-			r={boid.r}
+			cx="{boid.x}%"
+			cy="{boid.y}%"
+			r="{boid.r}%"
 			fill="url(#boidGradient{i})"
 		/>
 	{/each}
