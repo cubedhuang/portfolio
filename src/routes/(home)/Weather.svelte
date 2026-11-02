@@ -38,7 +38,7 @@
 			in
 			<b>{data.name}</b>.
 		{:else}
-			In <b>Marietta</b>
+			In <b>Atlanta</b>.
 		{/if}
 	</span>
 </p>

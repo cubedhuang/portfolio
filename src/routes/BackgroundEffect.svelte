@@ -23,7 +23,7 @@
 
 			this.vx = 0;
 			this.vy = 0;
-			this.hue = Math.random() * 60 + 240;
+			this.hue = Math.random() * 60 + 260;
 		}
 
 		get r() {
@@ -184,11 +184,11 @@
 			>
 				<stop
 					offset="0%"
-					stop-color="hsla({boid.hue}, 100%, 50%, 0.1)"
+					stop-color="oklch(0.5 0.25 {boid.hue} / 0.1)"
 				/>
 				<stop
 					offset="100%"
-					stop-color="hsla({boid.hue}, 100%, 50%, 0)"
+					stop-color="oklch(0.5 0.25 {boid.hue} / 0)"
 				/>
 			</radialGradient>
 		{/each}
@@ -203,10 +203,10 @@
 		>
 			<stop
 				offset="0%"
-				stop-color="hsla(270, 100%, 50%, {mouseStrength.current *
+				stop-color="oklch(0.5 0.25 290 / {mouseStrength.current *
 					(mousePressed.current * 0.125 + 0.125)})"
 			/>
-			<stop offset="100%" stop-color="hsla(270, 100%, 50%, 0)" />
+			<stop offset="100%" stop-color="oklch(0.5 0.25 290 / 0)" />
 		</radialGradient>
 	</defs>
 

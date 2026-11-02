@@ -1,10 +1,13 @@
 <script lang="ts">
 	import '../app.css';
+	import type { Snippet } from 'svelte';
 
 	import { onNavigate } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
-	import NavLink from './NavLink.svelte';
 	import BackgroundEffect from './BackgroundEffect.svelte';
+	import { page } from '$app/state';
+	import type { Path } from '$app/types';
 
 	function getBaseRoute(pathname: string | undefined) {
 		return pathname?.match(/\/[^/]*/)?.[0] ?? '/';
@@ -31,24 +34,40 @@
 			});
 		});
 	});
+
+	const { children }: { children: Snippet } = $props();
 </script>
 
 <BackgroundEffect />
 
-<nav class="wrapper mt-20 md:mt-32 text-gray-400">
-	<ul class="flex flex-wrap gap-x-12 gap-y-2">
-		<NavLink href="">Home</NavLink>
-		<NavLink href="projects">Projects</NavLink>
-		<NavLink href="research">Research</NavLink>
-		<NavLink href="music">Music</NavLink>
+<nav class="wrapper mt-20 md:mt-24 text-gray-300">
+	<ul class="flex flex-wrap gap-x-6 sm:gap-x-12 gap-y-2">
+		{#snippet link(href: Path, name: string)}
+			{@const active = page.url.pathname === `/${href}`}
+			<li>
+				<a
+					href={resolve(href)}
+					class="transition {active ? 'text-white active' : ''}"
+				>
+					{name}
+				</a>
+			</li>
+		{/snippet}
+
+		{@render link('', 'Home')}
+		{@render link('projects', 'Projects')}
+		{@render link('research', 'Research')}
+		{@render link('music', 'Music')}
 	</ul>
 </nav>
 
-<div class="mt-16 md:mt-20 mb-20 md:mb-32">
-	<slot />
+<div class="mt-12 md:mt-16 mb-20 md:mb-32">
+	{@render children()}
 </div>
 
-<style>
+<style lang="postcss">
+	@reference "../app.css";
+
 	@keyframes fade-in {
 		from {
 			opacity: 0;
@@ -87,6 +106,11 @@
 
 	nav {
 		view-transition-name: nav;
+	}
+
+	a.active {
+		@apply relative after:block after:absolute after:top-full after:mt-0.5 after:left-1/2 after:-translate-x-1/2
+		    after:bg-current after:rounded-full after:w-1 after:h-1 after:pointer-events-none;
 	}
 
 	div {

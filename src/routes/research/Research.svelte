@@ -4,7 +4,7 @@
 	export let src: string;
 </script>
 
-<div class="mt-4 grid md:grid-cols-3 rounded-xl overflow-hidden">
+<div class="mt-4 grid md:grid-cols-3 rounded-xl overflow-hidden lg:-mx-8">
 	<div class="p-6 md:col-span-2 md:p-8 bg-gray-900 max-md:row-start-2">
 		<h2 class="mb-2 font-bold text-lg sm:text-xl leading-tight text-pretty">
 			<a

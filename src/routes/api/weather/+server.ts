@@ -3,7 +3,7 @@ import { json } from '@sveltejs/kit';
 
 export async function GET({ fetch, setHeaders }) {
 	const data = await fetch(
-		`https://api.openweathermap.org/data/2.5/weather?lat=33.95&lon=-84.55&units=imperial&appid=${WEATHER_API_KEY}`
+		`https://api.openweathermap.org/data/2.5/weather?lat=33.7490&lon=-84.3880&units=imperial&appid=${WEATHER_API_KEY}`
 	).then(res => res.json());
 
 	setHeaders({

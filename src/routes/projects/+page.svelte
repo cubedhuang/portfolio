@@ -8,7 +8,7 @@
 <main class="wrapper fade">
 	<h1 class="header">Projects</h1>
 
-	<p class="mt-4 mb-8 text-gray-400">
+	<p class="mt-4 mb-6 text-gray-300">
 		Personal projects I've built and maintain.
 	</p>
 

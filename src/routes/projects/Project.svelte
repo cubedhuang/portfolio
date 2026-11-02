@@ -15,7 +15,7 @@
 		<div class="p-6 md:p-8 bg-gray-900 max-sm:row-start-2">
 			<h2 class="font-bold text-2xl">{name}</h2>
 
-			<p class="mt-2 text-gray-400">
+			<p class="mt-2 text-gray-300">
 				<slot />
 			</p>
 		</div>

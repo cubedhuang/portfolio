@@ -8,11 +8,5 @@
 
 	let { href, children }: { href: Path; children: Snippet } = $props();
 
-	let active = $derived(page.url.pathname === `/${href}`);
+	let active = $derived();
 </script>
-
-<li>
-	<a href={resolve(href)} class="transition {active ? 'text-white' : ''}">
-		{@render children()}
-	</a>
-</li>

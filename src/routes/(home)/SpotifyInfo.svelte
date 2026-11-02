@@ -42,7 +42,7 @@
 		<object
 			data={data.track.album.images[0].url}
 			type="image/png"
-			class="w-20 h-20 rounded-xl shrink-0 bg-gray-800 text-gray-400 grid place-items-center"
+			class="w-20 h-20 rounded-xl shrink-0 bg-gray-800 text-gray-300 grid place-items-center"
 			aria-label="Album Art"
 		>
 			<svg
@@ -60,7 +60,7 @@
 		</object>
 	{:else}
 		<div
-			class="w-20 h-20 rounded-xl shrink-0 bg-gray-800 text-gray-400 grid place-items-center"
+			class="w-20 h-20 rounded-xl shrink-0 bg-gray-800 text-gray-300 grid place-items-center"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@
 	{/if}
 
 	<div class="pl-4 py-2 pr-4 relative">
-		<p class="line-clamp-1 break-all text-gray-400">
+		<p class="line-clamp-1 break-all text-gray-300">
 			{#if data?.track}
 				<a
 					href={data.track.external_urls.spotify}
@@ -107,7 +107,7 @@
 			{/if}
 		</p>
 
-		<p class="flex items-center gap-1 text-sm text-gray-400">
+		<p class="flex items-center gap-1 text-sm text-gray-300">
 			<span class="shrink-0">
 				<MusicalNote />
 			</span>
@@ -130,7 +130,7 @@
 			style:--progress={progress}
 		>
 			<div
-				class="w-10 h-10 rounded-full bg-gray-900 mt-1 ml-1 grid place-items-center text-gray-400"
+				class="w-10 h-10 rounded-full bg-gray-900 mt-1 ml-1 grid place-items-center text-gray-300"
 			>
 				{#if data.isPaused}
 					<Play />

@@ -19,9 +19,22 @@
 <main class="wrapper fade">
 	<h1 class="header">Daniel Huang</h1>
 
-	<p class="mt-4 text-gray-400">
-		Hey! I'm <b>Daniel</b>. I study computer science and linguistics at
-		Georgia Tech.
+	<p class="mt-6">
+		Hi! I'm <b>Daniel</b>, an undergraduate student studying computer
+		science and linguistics at the Georgia Institute of Technology.
+	</p>
+	<p>
+		I'm interested in programming languages, compilers, and systems as well
+		as computational corpus linguistics and theoretical syntax.
+	</p>
+	<p>
+		At Georgia Tech, I develop teaching material and maintain
+		<a href="https://github.com/gt-cs2110">course software</a> as a Senior
+		Teaching Assistant for CS 2110 (Computer Organization and Programming)
+		and organize weekly meetings on various topics of interest with the
+		<a href="https://www.instagram.com/linguisticsgatech/">
+			Linguistics Club</a
+		>.
 	</p>
 
 	<div class="my-6 flex gap-6">
@@ -64,7 +77,19 @@
 <style lang="postcss">
 	@reference '../../app.css';
 
+	p {
+		@apply leading-relaxed text-pretty text-gray-300;
+	}
+
+	p + p {
+		@apply mt-4;
+	}
+
 	b {
-		@apply text-gray-300;
+		@apply font-semibold text-white;
+	}
+
+	a {
+		@apply text-violet-300 underline decoration-violet-300/30 underline-offset-2 transition hv:decoration-violet-300;
 	}
 </style>
