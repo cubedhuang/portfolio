@@ -1,5 +1,4 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
-import { json } from '@sveltejs/kit';
 import { SPOTIFY_CLIENT_ID } from '$app/env/private';
 import type { NowPlayingResponse } from '#lib/types.ts';
 import { getSpotifyAccessToken } from '#lib/server/spotify.js';
@@ -36,5 +35,5 @@ export async function GET({ fetch, platform, setHeaders }) {
 		'Cache-Control': 'public, max-age=0, s-maxage=3'
 	});
 
-	return json(response);
+	return Response.json(response);
 }

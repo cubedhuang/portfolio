@@ -2,7 +2,7 @@ import { SPOTIFY_CLIENT_ID } from '$app/env/private';
 import { getSpotifyAccessToken } from '#lib/server/spotify.ts';
 import type { SpotifyTimeRange } from '#lib/types.ts';
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
 export async function GET({ fetch, platform, setHeaders, url }) {
 	const range = url.searchParams.get('time_range') ?? '';
@@ -27,5 +27,5 @@ export async function GET({ fetch, platform, setHeaders, url }) {
 		'Cache-Control': 'public, max-age=0, s-maxage=300'
 	});
 
-	return json(items.items);
+	return Response.json(items.items.filter(item => item.is_playable));
 }

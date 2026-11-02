@@ -1,5 +1,4 @@
 import { WEATHER_API_KEY } from '$app/env/private';
-import { json } from '@sveltejs/kit';
 
 export async function GET({ fetch, setHeaders }) {
 	const data = await fetch(
@@ -10,5 +9,5 @@ export async function GET({ fetch, setHeaders }) {
 		'Cache-Control': 'public, max-age=0, s-maxage=300'
 	});
 
-	return json(data);
+	return Response.json(data);
 }
