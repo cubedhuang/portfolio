@@ -70,7 +70,7 @@
 		<a href={resolve('research')}>research</a> at the Society for Computation
 		in Linguistics and the Emory Undergraduate Linguistics Conference.
 	</p>
-	<p>
+	<p lang="tok">
 		<i>sina toki pona la o toki tawa mi a!</i>
 	</p>
 
