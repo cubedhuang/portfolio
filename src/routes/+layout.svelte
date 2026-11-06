@@ -1,5 +1,8 @@
 <script lang="ts">
+	import '@fontsource-variable/inter/opsz.css';
+	import '@fontsource-variable/inter/wght-italic.css';
 	import '../app.css';
+
 	import type { Snippet } from 'svelte';
 
 	import { onNavigate } from '$app/navigation';
