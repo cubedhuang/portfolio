@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Meta from '#lib/components/Meta.svelte';
 	import Research from './Research.svelte';
+
+	import word2vec from '#lib/assets/images/research/word2vec.png?enhanced';
+	import variation from '#lib/assets/images/research/variation.png?enhanced';
 </script>
 
 <Meta title="Research – Daniel" description="My research." />
@@ -14,7 +17,8 @@
 		<Research
 			name="Examining the Limits of Word2Vec with Toki Pona"
 			href="https://aclanthology.org/2026.scil-main.4/"
-			src="/images/research/word2vec.png"
+			src={word2vec}
+			loading="eager"
 		>
 			<p>
 				2026 &middot; Coauthored with <a
@@ -45,7 +49,7 @@
 		<Research
 			name="A Computational Approach to Analyzing Language Change and Variation in the Constructed Language Toki Pona"
 			href="https://arxiv.org/abs/2508.10246"
-			src="/images/research/variation.png"
+			src={variation}
 		>
 			<p>
 				2025 &middot; Coauthored with <a
