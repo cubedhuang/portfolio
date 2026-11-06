@@ -9,7 +9,7 @@
 	<div class="wrapper fade">
 		<h1 class="header">Research</h1>
 
-		<p class="mt-4 mb-6 text-muted">My research.</p>
+		<p class="mt-4 mb-6 text-muted subtitle">My research.</p>
 
 		<Research
 			name="Examining the Limits of Word2Vec with Toki Pona"
@@ -84,7 +84,7 @@
 <style lang="postcss">
 	@reference "../../app.css";
 
-	p:not(h1 + p) {
+	p:not(.subtitle) {
 		@apply text-muted text-sm;
 	}
 
