@@ -21,7 +21,7 @@
 <main class="wrapper fade">
 	<h1 class="header">Daniel Huang</h1>
 
-	<p class="mt-6">
+	<p class="mt-4">
 		Hi! I'm <b>Daniel</b>, an undergraduate student studying computer
 		science and linguistics at the Georgia Institute of Technology. I'm
 		interested in programming languages, compilers, and systems, as well as
