@@ -77,8 +77,9 @@
 		</div>
 	{/if}
 
-	<div class="pl-4 py-2 pr-4 relative">
-		<p class="line-clamp-1 break-all text-muted">
+	<div class="pl-4 py-2 pr-4 relative min-w-0">
+		<!-- truncate also cuts of focus outline so margin/padding compensates -->
+		<p class="truncate -m-1.5 p-1.5 text-muted">
 			{#if data?.track}
 				<a
 					href={data.track.external_urls.spotify}
